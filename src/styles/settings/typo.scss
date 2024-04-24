@@ -1,0 +1,112 @@
+@mixin H1 {
+  font: {
+    family: 'Pretendard GOV';
+    size: 18px;
+    style: normal;
+    weight: 500;
+  }
+  line-height: 20px;
+}
+
+@mixin H2med {
+  font: {
+    family: 'Pretendard GOV';
+    size: 16px;
+    style: normal;
+    weight: 500;
+  }
+  line-height: 20px;
+}
+
+@mixin H2reg {
+  font: {
+    family: 'Pretendard GOV';
+    size: 16px;
+    style: normal;
+    weight: 400;
+  }
+  line-height: 20px;
+}
+
+@mixin B1bold {
+  font: {
+    family: 'Pretendard GOV';
+    size: 15px;
+    style: normal;
+    weight: 700;
+  }
+  line-height: 20px;
+}
+
+@mixin B1med {
+  font: {
+    family: 'Pretendard GOV';
+    size: 15px;
+    style: normal;
+    weight: 500;
+  }
+  line-height: 20px;
+}
+
+@mixin B2bold {
+  font: {
+    family: 'Pretendard GOV';
+    size: 14px;
+    style: normal;
+    weight: 700;
+  }
+  line-height: 20px;
+}
+
+@mixin B2med {
+  font: {
+    family: 'Pretendard GOV';
+    size: 14px;
+    style: normal;
+    weight: 500;
+  }
+  line-height: 20px;
+}
+
+@mixin B2reg {
+  font: {
+    family: 'Pretendard GOV';
+    size: 14px;
+    style: normal;
+    weight: 400;
+  }
+  line-height: 20px;
+}
+
+@mixin Cap1 {
+  font: {
+    family: 'Pretendard GOV';
+    size: 13px;
+    style: normal;
+    weight: 400;
+  }
+  line-height: 16px;
+  letter-spacing: -0.5px;
+}
+
+@mixin Cap2 {
+  font: {
+    family: 'Pretendard GOV';
+    size: 12px;
+    style: normal;
+    weight: 500;
+  }
+  line-height: 16px;
+  letter-spacing: -0.5px;
+}
+
+@mixin Cap3 {
+  font: {
+    family: 'Pretendard GOV';
+    size: 11px;
+    style: normal;
+    weight: 500;
+  }
+  line-height: 20px;
+  letter-spacing: -0.5px;
+}
