@@ -1,0 +1,38 @@
+@import '../../styles/style.scss';
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  width: 100%;
+}
+
+.left {
+}
+
+.right {
+  display: flex;
+  gap: 43px;
+
+  @include B2med;
+  color: $gray80;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.menu:hover {
+  color: $primary50;
+  cursor: pointer;
+  fill: $primary50;
+}
+
+.menu .icon:hover {
+  color: $primary50;
+  fill: $primary50;
+  cursor: pointer;
+}
