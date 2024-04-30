@@ -1,7 +1,7 @@
 import { GnbChat, GnbLogo, GnbProfile, GnbSave } from 'assets';
 import React, { useState } from 'react';
 import styles from './Header.module.scss';
-import GnbSearchBar from 'components/SearchBar';
+import HeaderSearchBar from 'components/SearchBar';
 
 const Header = () => {
   const [typingValue, setTypingValue] = useState<string>('');
@@ -15,7 +15,7 @@ const Header = () => {
     <div className={styles.container}>
       <div className={styles.left}>
         <GnbLogo />
-        <GnbSearchBar onSave={handleSave} />
+        <HeaderSearchBar onSave={handleSave} />
       </div>
       <div className={styles.right}>
         <div className={styles.menu}>

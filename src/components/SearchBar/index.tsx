@@ -1,12 +1,12 @@
 import React, { ChangeEvent, useState } from 'react';
 import { GnbSearch } from 'assets';
-import styles from './GnbSearchBar.module.scss';
+import styles from './HeaderSearchBar.module.scss';
 
-interface GnbSearchBarProps {
+interface HeaderSearchProps {
   onSave?: (inputValue: string) => void;
 }
 
-const GnbSearchBar = ({ onSave }: GnbSearchBarProps) => {
+const HeaderSearchBar = ({ onSave }: HeaderSearchProps) => {
   const [inputValue, setInputValue] = useState<string>('');
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,4 +38,4 @@ const GnbSearchBar = ({ onSave }: GnbSearchBarProps) => {
   );
 };
 
-export default GnbSearchBar;
+export default HeaderSearchBar;
