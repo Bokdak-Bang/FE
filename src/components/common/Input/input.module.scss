@@ -8,7 +8,7 @@
   width: fit-content;
 }
 
-input {
+.inputArea {
   padding: 18px 20px;
   border-radius: 8px;
   border: 1px solid $gray30;
@@ -27,11 +27,11 @@ input {
   color: $gray60;
 }
 
-input:focus-within {
+.inputArea:focus-within {
   border: 1px solid $primary50;
 }
 
-input:focus-within ~ .label {
+.inputArea:focus-within ~ .label {
   display: block;
   top: -8px;
   left: 12px;
@@ -43,6 +43,6 @@ input:focus-within ~ .label {
   color: $primary50;
 }
 
-input:focus::placeholder {
+.inputArea:focus::placeholder {
   color: transparent;
 }

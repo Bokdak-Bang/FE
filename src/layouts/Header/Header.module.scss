@@ -8,10 +8,7 @@
   width: 100%;
 }
 
-.left {
-}
-
-.right {
+.menuContainer {
   display: flex;
   gap: 43px;
 
@@ -35,12 +32,6 @@
     fill: $primary50;
   }
 }
-
-// .icon:hover {
-//   color: $primary50;
-//   fill: $primary50;
-//   cursor: pointer;
-// }
 
 .left {
   display: flex;

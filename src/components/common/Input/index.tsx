@@ -27,6 +27,7 @@ const Input = ({ placeHolder, type, onSave }: InputProps) => {
   return (
     <div className={styles.container}>
       <input
+        className={styles.inputArea}
         type={type}
         value={inputValue}
         placeholder={placeHolder}
