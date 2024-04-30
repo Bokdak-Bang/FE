@@ -1,19 +1,21 @@
 import { GnbChat, GnbLogo, GnbProfile, GnbSave } from 'assets';
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Header.module.scss';
 import GnbSearchBar from 'components/SearchBar';
 
 const Header = () => {
+  const [typingValue, setTypingValue] = useState<string>('');
+
+  const handleSave = (s: string) => {
+    setTypingValue(s);
+    console.log(s);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.left}>
         <GnbLogo />
-        <GnbSearchBar
-          value={''}
-          onChange={function (e: React.ChangeEvent<HTMLInputElement>): void {
-            throw new Error('Function not implemented.');
-          }}
-        />
+        <GnbSearchBar onSave={handleSave} />
       </div>
       <div className={styles.right}>
         <div className={styles.menu}>

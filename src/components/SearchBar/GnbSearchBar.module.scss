@@ -19,4 +19,11 @@
   padding: 8px 11px 8px 41px;
   border: 1px solid $gray40;
   border-radius: 22px;
+
+  @include B2med;
+  color: $bk;
+
+  ::placeholder {
+    color: $gray80;
+  }
 }
