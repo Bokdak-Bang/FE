@@ -1,0 +1,48 @@
+@import '../../../styles/style.scss';
+
+.container {
+  position: absolute;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: fit-content;
+}
+
+.inputArea {
+  padding: 18px 20px;
+  border-radius: 8px;
+  border: 1px solid $gray30;
+
+  @include H2med;
+  color: $gray60;
+}
+
+.label {
+  display: none;
+  position: absolute;
+  left: 22px;
+  //   transition: all ease-in-out 0.2s;
+
+  @include H2med;
+  color: $gray60;
+}
+
+.inputArea:focus-within {
+  border: 1px solid $primary50;
+}
+
+.inputArea:focus-within ~ .label {
+  display: block;
+  top: -8px;
+  left: 12px;
+  z-index: 1;
+  padding: 0 10px;
+  background-color: $wh;
+
+  @include B2med;
+  color: $primary50;
+}
+
+.inputArea:focus::placeholder {
+  color: transparent;
+}

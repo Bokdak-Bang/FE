@@ -1,0 +1,29 @@
+@import '../../styles/style.scss';
+
+.container {
+  width: 446px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.icon {
+  position: relative;
+  z-index: 3;
+  margin-left: 11px;
+}
+
+.input {
+  position: absolute;
+  width: 446px;
+  padding: 8px 11px 8px 41px;
+  border: 1px solid $gray40;
+  border-radius: 22px;
+
+  @include B2med;
+  color: $bk;
+
+  ::placeholder {
+    color: $gray80;
+  }
+}
