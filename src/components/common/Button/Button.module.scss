@@ -1,0 +1,13 @@
+@import '../../../styles/style.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+
+  border-radius: 8px;
+  background: $primary50;
+
+  color: $wh;
+}
