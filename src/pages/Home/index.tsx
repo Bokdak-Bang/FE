@@ -1,4 +1,5 @@
 import CustomButton from 'components/common/Button';
+import Input from 'components/common/Input';
 import React from 'react';
 
 const Home = () => {
@@ -23,6 +24,12 @@ const Home = () => {
         fontType={'C1'}
         text={'버튼내용'}
       />
+      <div
+        style={{
+          height: '50px',
+        }}
+      />
+      <Input placeHolder={'이름'} type={'password'} />
     </>
   );
 };
