@@ -36,3 +36,12 @@
   fill: $primary50;
   cursor: pointer;
 }
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+
+  color: $gray80;
+  @include B2med;
+}
