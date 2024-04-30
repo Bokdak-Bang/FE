@@ -29,7 +29,7 @@ const Home = () => {
           height: '50px',
         }}
       />
-      <Input placeHolder={'이름'} type={'password'} />
+      <Input placeHolder={'이름'} type={'input'} />
     </>
   );
 };

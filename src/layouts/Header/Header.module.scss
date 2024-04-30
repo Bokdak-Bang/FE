@@ -29,13 +29,18 @@
   color: $primary50;
   cursor: pointer;
   fill: $primary50;
+
+  .icon path {
+    color: $primary50;
+    fill: $primary50;
+  }
 }
 
-.menu .icon:hover {
-  color: $primary50;
-  fill: $primary50;
-  cursor: pointer;
-}
+// .icon:hover {
+//   color: $primary50;
+//   fill: $primary50;
+//   cursor: pointer;
+// }
 
 .left {
   display: flex;
