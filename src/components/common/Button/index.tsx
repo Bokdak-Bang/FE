@@ -2,19 +2,26 @@ import React from 'react';
 import styles from './Button.module.scss';
 
 interface CustomButtonProps {
-  horizontalpadding: number;
+  width: number;
+  buttonType: string;
   fontType: string;
   text: string;
 }
 
 const CustomButton = ({
-  horizontalpadding,
+  width,
+  buttonType,
   fontType,
   text,
 }: CustomButtonProps) => {
   return (
     <button
-      className={`${styles.container} ${fontType === '배송준비중' && styles.active}/`}
+      className={`${styles.container} ${buttonType === 'fill' ? styles.fill : styles.empty}
+      ${fontType === 'H2' && styles.H2} ${fontType === 'B1' && styles.B1}
+      ${fontType === 'C1' && styles.C1}`}
+      style={{
+        width: `${width}px`,
+      }}
     >
       {text}
     </button>

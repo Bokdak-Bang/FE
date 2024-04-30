@@ -5,7 +5,24 @@ const Home = () => {
   return (
     <>
       <div>Home</div>
-      <CustomButton horizontalpadding={0} fontType={''} text={'버튼내용'} />
+      <CustomButton
+        width={213}
+        buttonType={'fill'}
+        fontType={'H2'}
+        text={'버튼내용'}
+      />
+      <CustomButton
+        width={213}
+        buttonType={'empty'}
+        fontType={'B1'}
+        text={'버튼내용'}
+      />
+      <CustomButton
+        width={213}
+        buttonType={'empty'}
+        fontType={'C1'}
+        text={'버튼내용'}
+      />
     </>
   );
 };

@@ -7,7 +7,28 @@
   padding: 14px;
 
   border-radius: 8px;
-  background: $primary50;
+}
 
+.fill {
+  background: $primary50;
   color: $wh;
+}
+
+.empty {
+  background: $wh;
+  color: $primary50;
+  border: 1px solid $primary50;
+  border-radius: 8px;
+}
+
+.H2 {
+  @include H2med;
+}
+
+.B1 {
+  @include B1med;
+}
+
+.C1 {
+  @include C1;
 }
