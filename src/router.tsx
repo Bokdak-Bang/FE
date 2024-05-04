@@ -1,8 +1,10 @@
 import Layout from 'layouts/Layout';
 import Home from 'pages/Home';
+import Main from 'pages/Main';
+import SideBar from 'pages/Main/SideBar';
+import Ranking from 'pages/Main/SideBar/Ranking';
+import Rating from 'pages/Main/SideBar/Rating';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
-
-// import { Layout } from '@/layouts/Layout';
 
 export const Router = () => {
   return (
@@ -11,10 +13,9 @@ export const Router = () => {
         <Route path="/" element={<Outlet />}>
           <Route index element={<Home />} />
         </Route>
-        {/* <Route path="/insurance" element={<Outlet />}>
-          <Route index element={<Insurance />} />
-          <Route path="guest" element={<GuestInsurance />} />
-        </Route> */}
+        <Route path="main" element={<Outlet />}>
+          <Route index element={<Main />} />
+        </Route>
       </Route>
     </Routes>
   );
