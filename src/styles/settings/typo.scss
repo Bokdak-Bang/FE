@@ -110,3 +110,21 @@
   line-height: 20px;
   letter-spacing: -0.5px;
 }
+
+@font-face {
+  font-family: 'Uiyeun';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2105@1.1/Uiyeun.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin number {
+  font: {
+    family: 'Uiyeun';
+    size: 20px;
+    style: normal;
+    weight: 400;
+  }
+  line-height: 24.545px;
+  letter-spacing: -0.477px;
+}
