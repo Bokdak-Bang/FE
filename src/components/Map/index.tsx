@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from 'react';
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
 
 const Map = () => {
   useEffect(() => {
@@ -16,8 +21,8 @@ const Map = () => {
       <div
         id="map"
         style={{
-          width: '100vw',
-          height: '100vh',
+          width: '100%',
+          height: '100%',
         }}
       ></div>
     </>
