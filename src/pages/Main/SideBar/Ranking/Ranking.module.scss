@@ -1,0 +1,38 @@
+@import '../../../../styles/style.scss';
+
+.title {
+  @include B1bold;
+  display: flex;
+  color: $gray80;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    margin: 21px 0 23px 8px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 638px;
+  gap: 12px;
+  justify-content: space-evenly;
+  overflow: hidden;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+    background: transparent; 
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 14.5px;
+    background: $gray60;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+}
