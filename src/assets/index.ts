@@ -11,3 +11,5 @@ export { ReactComponent as Education } from './icons/education.svg';
 export { ReactComponent as Welfare } from './icons/welfare.svg';
 export { ReactComponent as Traffic } from './icons/traffic.svg';
 export { ReactComponent as Reset } from './icons/reset.svg';
+export { ReactComponent as LeftArrow } from './icons/leftArrow.svg';
+export { ReactComponent as RightArrow } from './icons/rightArrow.svg';
