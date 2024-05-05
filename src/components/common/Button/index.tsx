@@ -6,6 +6,7 @@ interface CustomButtonProps {
   buttonType: string;
   fontType: string;
   text: string;
+  onClick?: () => void;
 }
 
 const CustomButton = ({
@@ -13,6 +14,7 @@ const CustomButton = ({
   buttonType,
   fontType,
   text,
+  onClick,
 }: CustomButtonProps) => {
   return (
     <button
@@ -22,6 +24,7 @@ const CustomButton = ({
       style={{
         width: `${width}px`,
       }}
+      onClick={onClick}
     >
       {text}
     </button>
