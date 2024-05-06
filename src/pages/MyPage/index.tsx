@@ -42,9 +42,9 @@ const index = () => {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.title}>마이페이지</div>
-      <div className={styles.container}>
+      <div className={styles.content}>
         <div className={styles.imgContainer}>
           <img src={currentImg} alt="" className={styles.img} />
           <label>
@@ -96,7 +96,7 @@ const index = () => {
           onClick={handleSave}
         />
       </div>
-    </>
+    </div>
   );
 };
 
