@@ -4,8 +4,9 @@ import { Estate, User } from 'assets';
 
 interface TypeItemProps {
   type: string;
+  onClick: () => void;
 }
-const TypeItem = ({ type }: TypeItemProps) => {
+const TypeItem = ({ type, onClick }: TypeItemProps) => {
   const label =
     type === 'user'
       ? '나의 새로운 터전을 찾아보자!'
@@ -25,7 +26,7 @@ const TypeItem = ({ type }: TypeItemProps) => {
         ];
 
   return (
-    <button className={styles.container}>
+    <button className={styles.container} onClick={onClick}>
       <div className={styles.labelContainer}>
         <div className={styles.label}>{label}</div>
         <div className={styles.underline} />

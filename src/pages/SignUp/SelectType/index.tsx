@@ -1,5 +1,5 @@
 import GuestHeader from 'layouts/GuestHeader';
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './SelectType.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { Logo150 } from 'assets';
@@ -8,6 +8,7 @@ import CustomButton from 'components/common/Button';
 
 const index = () => {
   const navigator = useNavigate();
+  const [isUser, setIsUser] = useState<boolean>();
 
   return (
     <>
@@ -26,15 +27,15 @@ const index = () => {
           </div>
         </div>
         <div className={styles.types}>
-          <TypeItem type={'user'} />
-          <TypeItem type={'estate'} />
+          <TypeItem type={'user'} onClick={() => setIsUser(true)} />
+          <TypeItem type={'estate'} onClick={() => setIsUser(false)} />
         </div>
         <CustomButton
           width={213}
           buttonType={'fill'}
           fontType={'H2'}
           text={'가입하기'}
-          onClick={() => navigator('/signup/form')}
+          onClick={() => navigator('/signup/form', { state: { isUser } })}
         />
       </div>
     </>
