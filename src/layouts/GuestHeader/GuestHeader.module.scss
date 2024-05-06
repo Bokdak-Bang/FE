@@ -1,0 +1,9 @@
+@import '../../styles/style.scss';
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 28px;
+  width: 100%;
+}
