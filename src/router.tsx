@@ -7,6 +7,7 @@ import Rating from 'pages/Main/SideBar/Rating';
 import SignIn from 'pages/SignIn';
 import SignUp from 'pages/SignUp';
 import SelectType from 'pages/SignUp/SelectType';
+import MyPage from 'pages/MyPage';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
 export const Router = () => {
@@ -24,6 +25,7 @@ export const Router = () => {
         <Route path="main" element={<Outlet />}>
           <Route index element={<Main />} />
         </Route>
+        <Route path="mypage" element={<MyPage />} />
       </Route>
     </Routes>
   );
