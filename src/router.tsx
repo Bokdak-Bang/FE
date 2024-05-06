@@ -5,6 +5,7 @@ import SideBar from 'pages/Main/SideBar';
 import Ranking from 'pages/Main/SideBar/Ranking';
 import Rating from 'pages/Main/SideBar/Rating';
 import SignIn from 'pages/SignIn';
+import SignUp from 'pages/SignUp';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
 export const Router = () => {
@@ -15,6 +16,7 @@ export const Router = () => {
           <Route index element={<Home />} />
         </Route>
         <Route path="signin" element={<SignIn />} />
+        <Route path="signup" element={<SignUp />} />
         <Route path="main" element={<Outlet />}>
           <Route index element={<Main />} />
         </Route>
