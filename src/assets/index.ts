@@ -17,3 +17,6 @@ export { ReactComponent as RightArrow } from './icons/rightArrow.svg';
 export { ReactComponent as Logo150 } from './icons/logo/logo-150.svg';
 export { ReactComponent as User } from './icons/signup-userimg.svg';
 export { ReactComponent as Estate } from './icons/signup-estateimg.svg';
+export { ReactComponent as DropDown1 } from './icons/gnb-dropdown1.svg';
+export { ReactComponent as DropDown2 } from './icons/gnb-dropdown2.svg';
+export { ReactComponent as DropDown3 } from './icons/gnb-dropdown3.svg';
