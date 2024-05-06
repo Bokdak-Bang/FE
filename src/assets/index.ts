@@ -13,3 +13,5 @@ export { ReactComponent as Traffic } from './icons/traffic.svg';
 export { ReactComponent as Reset } from './icons/reset.svg';
 export { ReactComponent as LeftArrow } from './icons/leftArrow.svg';
 export { ReactComponent as RightArrow } from './icons/rightArrow.svg';
+
+export { ReactComponent as Logo150 } from './icons/logo/logo-150.svg';

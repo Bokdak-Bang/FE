@@ -4,6 +4,7 @@ import Main from 'pages/Main';
 import SideBar from 'pages/Main/SideBar';
 import Ranking from 'pages/Main/SideBar/Ranking';
 import Rating from 'pages/Main/SideBar/Rating';
+import SignIn from 'pages/SignIn';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
 export const Router = () => {
@@ -11,7 +12,8 @@ export const Router = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Outlet />}>
-          <Route index element={<Home />} />
+          {/* <Route index element={<Home />} /> */}
+          <Route index element={<SignIn />} />
         </Route>
         <Route path="main" element={<Outlet />}>
           <Route index element={<Main />} />
