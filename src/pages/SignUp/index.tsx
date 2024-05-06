@@ -45,6 +45,7 @@ const index = () => {
             buttonType={'empty'}
             fontType={'H2'}
             text={'이전'}
+            onClick={() => navigator('/signup')} // user type이 estate인 경우엔 바로 type 선택으로 넘어가면 안됨
           />
           <CustomButton
             width={213}
