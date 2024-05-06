@@ -5,9 +5,23 @@ import CustomButton from 'components/common/Button';
 
 const index = () => {
   const imgRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const passwordCheckRef = useRef<HTMLInputElement>(null);
+
   const [currentImg, setCurrentImg] = useState<string>(
     'images/profile-default.svg',
   );
+
+  const handleSave = () => {
+    const name = nameRef.current?.value;
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+    const passwordCheck = passwordCheckRef.current?.value;
+
+    console.log('name: ', name, ', email: ', email, ', password: ', password);
+  };
 
   const handleChangeImg = (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target!.files;
@@ -50,24 +64,28 @@ const index = () => {
             type="text"
             placeHolder="이름"
             value="홍길동"
+            ref={nameRef}
           />
           <Input
             isModifying={true}
             type="email"
             placeHolder="이메일"
             value="naver@naver"
+            ref={emailRef}
           />
           <Input
             isModifying={true}
             type="password"
             placeHolder="비밀번호"
             value="12345678"
+            ref={passwordRef}
           />
           <Input
             isModifying={true}
             type="password"
             placeHolder="비밀번호 확인"
             value="12345678"
+            ref={passwordCheckRef}
           />
         </div>
         <CustomButton
@@ -75,6 +93,7 @@ const index = () => {
           buttonType={'fill'}
           fontType={'H2'}
           text={'정보 수정하기'}
+          onClick={handleSave}
         />
       </div>
     </>
