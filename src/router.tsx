@@ -12,9 +12,9 @@ export const Router = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Outlet />}>
-          {/* <Route index element={<Home />} /> */}
-          <Route index element={<SignIn />} />
+          <Route index element={<Home />} />
         </Route>
+        <Route path="signin" element={<SignIn />} />
         <Route path="main" element={<Outlet />}>
           <Route index element={<Main />} />
         </Route>
