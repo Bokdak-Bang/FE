@@ -21,7 +21,6 @@ ChartJS.register(
 );
 
 const BarChart = () => {
-  // 데이터와 차트 구성 옵션
   const data = {
     labels: ['양천구', '서초구', '종로구', '강서구', '서대문구', '강남구'],
     datasets: [
