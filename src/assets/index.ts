@@ -24,4 +24,3 @@ export { ReactComponent as Estate } from './icons/signup-estateimg.svg';
 export { ReactComponent as DropDown1 } from './icons/gnb-dropdown1.svg';
 export { ReactComponent as DropDown2 } from './icons/gnb-dropdown2.svg';
 export { ReactComponent as DropDown3 } from './icons/gnb-dropdown3.svg';
-
