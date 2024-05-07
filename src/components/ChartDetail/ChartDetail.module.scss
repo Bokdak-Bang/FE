@@ -1,0 +1,108 @@
+@import "../../styles/style.scss";
+
+.header{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 28px;
+    justify-content: center;
+}
+.arrowIcon{
+    width: 12.5px;
+    height: 10px;
+}
+.title{
+    @include C1;
+    color: $gray80;
+}
+
+.infoWrapper{
+    display: flex;
+    gap: 17px;
+    margin-bottom: 17px;
+}
+
+.info{
+    display: inline-flex;
+    padding: 4px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 19px;
+    border-radius: 15px;
+    border: 1px solid $gray30;
+    background: $gray10;
+    text-align: center;
+    color:$gray70;
+    @include C1;
+}
+
+.title{
+    @include C1;
+    color: $gray70;
+    text-align: center;
+}   
+
+.leftInfo{
+    @include H1;
+    color: $gray80;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.ect{
+    @include C3;
+    color: $gray50;
+}
+
+.rightInfo{
+    @include H1;
+    color: $primary50;
+    text-align: center;
+}
+
+.detail{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    flex:1;
+}
+
+.detailWrapper{
+    width: 581px;
+    height: 97px;
+    border-radius: 18px;
+    background: $primary05;
+    display: flex;
+
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .valueContainer {
+    display: flex;
+    align-items: baseline;
+  }
+  
+  .leftInfo {
+    @include H1;
+    color: $gray80;
+    margin-right: 6px;
+  }
+  
+  .ect {
+    @include C3;
+    color: $gray50;
+  }
+  
