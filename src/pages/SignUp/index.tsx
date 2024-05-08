@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import styles from './SignUp.module.scss';
 import GuestHeader from 'layouts/GuestHeader';
-import { Logo150 } from 'assets';
+import { AddImg, Logo150 } from 'assets';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Input from 'components/common/Input';
 import CustomButton from 'components/common/Button';
@@ -11,6 +11,7 @@ const index = () => {
   const { state } = useLocation();
   const { isUser } = state;
   const navigator = useNavigate();
+  const [currentImg, setCurrentImg] = useState<string>();
 
   const [isSecondPage, setIsSecondPage] = useState<boolean>(false);
   const [isThirdPage, setIsThirdPage] = useState<boolean>(false);
@@ -25,6 +26,7 @@ const index = () => {
   const estateNameRef = useRef<HTMLInputElement>(null);
   const callNumberRef = useRef<HTMLInputElement>(null);
   const addressRef = useRef<HTMLInputElement>(null);
+  const imgRef = useRef<HTMLInputElement>(null);
 
   const handleMemberSignUp = () => {
     const name = nameRef.current?.value;
@@ -43,6 +45,24 @@ const index = () => {
         }
       });
     }
+  };
+
+  const handleChangeImg = (e: ChangeEvent<HTMLInputElement>) => {
+    const files = e.target!.files;
+    if (files) {
+      const newImg: File = files[0];
+      // 이미지 파일 유효성 검사
+      if (!isImageFile(newImg)) {
+        alert('이미지 파일만 업로드 가능합니다.');
+        return;
+      }
+      setCurrentImg(URL.createObjectURL(newImg));
+    }
+  };
+
+  const isImageFile = (file: File) => {
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    return allowedTypes.includes(file.type);
   };
 
   return (
@@ -81,9 +101,26 @@ const index = () => {
               <Input type="text" placeHolder="주소" ref={addressRef} />
             </>
           ) : (
-            <>
-              <div>공인중개사 이미지</div>
-            </>
+            <div className={styles.imgContainer}>
+              <div className={styles.title}>공인중개사 증명</div>
+              <div className={styles.label}>
+                부동산중개업 등록증 또는 사업자등록증을 업로드해 주세요.
+              </div>
+              {currentImg ? (
+                <img src={currentImg} className={styles.changedImg} />
+              ) : (
+                <label>
+                  <input
+                    type="file"
+                    ref={imgRef}
+                    accept=".jpg,.jpeg,.png"
+                    style={{ display: 'none' }}
+                    onChange={handleChangeImg}
+                  />
+                  <AddImg />
+                </label>
+              )}
+            </div>
           )}
         </div>
         <div className={styles.btnContainer}>
