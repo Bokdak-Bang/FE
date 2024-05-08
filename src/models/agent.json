@@ -1,0 +1,74 @@
+{
+  "agents": [
+    {
+      "id": 1,
+      "img": "https://cdn.kado.net/news/photo/202303/1171823_600611_1618.jpg",
+      "name": "삼성 공인중개사무소",
+      "location": "서울 성북구 동소문로26가길 12 1층",
+      "call": "02-1234-5678"
+    },
+    {
+      "id": 2,
+      "img": "https://cdn.kado.net/news/photo/202303/1171823_600611_1618.jpg",
+      "name": "현대 공인중개사무소",
+      "location": "서울 강남구 테헤란로 123",
+      "call": "02-9876-5432"
+    },
+    {
+      "id": 3,
+      "img": "https://cdn.kado.net/news/photo/202303/1171823_600611_1618.jpg",
+      "name": "LG 공인중개사무소",
+      "location": "서울 마포구 월드컵북로 58",
+      "call": "02-4567-8901"
+    },
+    {
+      "id": 4,
+      "img": "https://cdn.kado.net/news/photo/202303/1171823_600611_1618.jpg",
+      "name": "KT 공인중개사무소",
+      "location": "서울 종로구 종로3가",
+      "call": "02-9876-2222"
+    },
+    {
+      "id": 5,
+      "img": "https://cdn.kado.net/news/photo/202303/1171823_600611_1618.jpg",
+      "name": "SK 공인중개사무소",
+      "location": "서울 용산구 이태원로 12",
+      "call": "02-3456-7890"
+    },
+    {
+      "id": 6,
+      "img": "https://cdn.kado.net/news/photo/202303/1171823_600611_1618.jpg",
+      "name": "한화 공인중개사무소",
+      "location": "서울 동대문구 청량리동",
+      "call": "02-5678-1234"
+    },
+    {
+      "id": 7,
+      "img": "https://cdn.kado.net/news/photo/202303/1171823_600611_1618.jpg",
+      "name": "롯데 공인중개사무소",
+      "location": "서울 서초구 서초대로 77",
+      "call": "02-5555-6666"
+    },
+    {
+      "id": 8,
+      "img": "https://cdn.kado.net/news/photo/202303/1171823_600611_1618.jpg",
+      "name": "GS 공인중개사무소",
+      "location": "서울 강서구 화곡로",
+      "call": "02-7777-8888"
+    },
+    {
+      "id": 9,
+      "img": "https://cdn.kado.net/news/photo/202303/1171823_600611_1618.jpg",
+      "name": "포스코 공인중개사무소",
+      "location": "서울 송파구 올림픽로 300",
+      "call": "02-9999-0000"
+    },
+    {
+      "id": 10,
+      "img": "https://cdn.kado.net/news/photo/202303/1171823_600611_1618.jpg",
+      "name": "신세계 공인중개사무소",
+      "location": "서울 중구 남대문로5가",
+      "call": "02-1111-2222"
+    }
+  ]
+}
