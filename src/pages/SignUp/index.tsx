@@ -5,6 +5,7 @@ import { Logo150 } from 'assets';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Input from 'components/common/Input';
 import CustomButton from 'components/common/Button';
+import { postSignUp } from 'seohyun-apis/SignUpApi';
 
 const index = () => {
   const { state } = useLocation();
@@ -24,6 +25,25 @@ const index = () => {
   const estateNameRef = useRef<HTMLInputElement>(null);
   const callNumberRef = useRef<HTMLInputElement>(null);
   const addressRef = useRef<HTMLInputElement>(null);
+
+  const handleMemberSignUp = () => {
+    const name = nameRef.current?.value;
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+    const passwordCheck = passwordCheckRef.current?.value;
+
+    if (name && email && password && passwordCheck) {
+      postSignUp(email, name, password, passwordCheck).then((res) => {
+        if (res.isSuccess) {
+          navigator('/signin');
+        } else if (res.code === 'MEMBER_002') {
+          alert('동일한 이메일을 가지는 사용자가 존재합니다!');
+        } else {
+          alert('회원가입 실패');
+        }
+      });
+    }
+  };
 
   return (
     <>
@@ -92,7 +112,7 @@ const index = () => {
             text={isUser || isThirdPage ? '가입하기' : '다음'}
             onClick={
               isUser
-                ? () => console.log('user 가입') // 사용자
+                ? handleMemberSignUp // 사용자
                 : !isSecondPage && !isThirdPage
                   ? () => setIsSecondPage(true) // 공인중개사 step 1
                   : !isThirdPage
