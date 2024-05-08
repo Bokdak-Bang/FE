@@ -5,7 +5,7 @@ import { Logo150 } from 'assets';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Input from 'components/common/Input';
 import CustomButton from 'components/common/Button';
-import { postSignUp } from 'seohyun-apis/SignUpApi';
+import { postSignUp } from 'apis/SignUpApi';
 
 const index = () => {
   const { state } = useLocation();

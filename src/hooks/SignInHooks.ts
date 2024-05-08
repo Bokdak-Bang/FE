@@ -1,4 +1,4 @@
-import { postSignIn } from 'seohyun-apis/SignInApi';
+import { postSignIn } from 'apis/SignInApi';
 import { useMemberStore } from 'utils/useMemberStore';
 
 // 로그인 후 세션에 토큰 저장 및 전역으로 사용자 정보 저장
