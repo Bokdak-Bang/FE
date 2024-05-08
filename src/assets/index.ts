@@ -24,3 +24,6 @@ export { ReactComponent as Estate } from './icons/signup-estateimg.svg';
 export { ReactComponent as DropDown1 } from './icons/gnb-dropdown1.svg';
 export { ReactComponent as DropDown2 } from './icons/gnb-dropdown2.svg';
 export { ReactComponent as DropDown3 } from './icons/gnb-dropdown3.svg';
+export { ReactComponent as Location } from './icons/location.svg';
+export { ReactComponent as Call } from './icons/call.svg';
+export { ReactComponent as 동네전문가 } from './icons/동네전문가.svg';

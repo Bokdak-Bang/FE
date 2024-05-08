@@ -3,6 +3,7 @@ import styles from './Button.module.scss';
 
 interface CustomButtonProps {
   width: number;
+  height?: number;
   buttonType: string;
   fontType: string;
   text: string;
@@ -14,6 +15,7 @@ const CustomButton = ({
   buttonType,
   fontType,
   text,
+  height,
   onClick,
 }: CustomButtonProps) => {
   return (
@@ -23,6 +25,7 @@ const CustomButton = ({
       ${fontType === 'C1' && styles.C1}`}
       style={{
         width: `${width}px`,
+        ...(height && { height: `${height}px` }),
       }}
       onClick={onClick}
     >

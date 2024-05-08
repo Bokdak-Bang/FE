@@ -1,0 +1,51 @@
+@import "../../styles/style.scss";
+
+.agent{
+    display: flex;
+    border-radius: 13px;
+    border: 1px solid var(--GRAY-30, #D8D8D8);
+    width: 558px;
+    height: 156px;
+}
+.infoWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 25px 12px 13px 25px;
+}
+
+.img{
+    width: 238px;
+    height: 154px;
+    border-radius: 12px 0px 0px 12px;
+}
+
+.name{
+    @include B1bold;
+    color:$gray80;
+    text-align: center;
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.location{
+    @include B2med;
+    color:$gray80;
+    text-align: center;
+}
+
+
+.call{
+    @include B2med;
+    color:$gray80;
+    text-align: center;
+}
+
+.wrapper{
+    display: flex;
+    gap: 7px;
+}
+
+.btn{
+    margin-left: 165px;
+}
