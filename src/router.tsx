@@ -7,6 +7,8 @@ import SignIn from 'pages/SignIn';
 import SignUp from 'pages/SignUp';
 import SelectType from 'pages/SignUp/SelectType';
 import MyPage from 'pages/MyPage';
+import Chat from 'pages/Chat';
+import Save from 'pages/Save';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 
 export const Router = () => {
@@ -22,6 +24,8 @@ export const Router = () => {
           <Route index path="form" element={<SignUp />} />
         </Route>
         <Route path="mypage" element={<MyPage />} />
+        <Route path="chat" element={<Chat />} />
+        <Route path="save" element={<Save />} />
       </Route>
     </Routes>
   );
