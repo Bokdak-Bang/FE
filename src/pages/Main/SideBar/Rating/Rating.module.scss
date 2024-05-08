@@ -1,10 +1,19 @@
 @import '../../../../styles/style.scss';
+
+.container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1%;
+}
+
 .title {
   @include B1bold;
   color: $gray80;
   margin-bottom: 16px;
 }
-.reset{
+.reset {
   width: 97px;
   display: inline-flex;
   padding: 12.5px 18px 12.5px 16px;
@@ -14,10 +23,13 @@
   border-radius: 8px;
   @include B1med;
   background-color: $gray20;
-  color:$gray70;
+  color: $gray70;
 }
 
-.btnWrapper{
+.btnWrapper {
+  position: fixed;
+  bottom: 3%;
+  background-color: $wh;
   display: flex;
   gap: 10px;
 }
