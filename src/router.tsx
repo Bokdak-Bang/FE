@@ -1,5 +1,4 @@
 import Layout from 'layouts/Layout';
-import Home from 'pages/Home';
 import Main from 'pages/Main';
 import SideBar from 'pages/Main/SideBar';
 import Ranking from 'pages/Main/SideBar/Ranking';
@@ -15,15 +14,12 @@ export const Router = () => {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Outlet />}>
-          <Route index element={<Home />} />
+          <Route index element={<Main />} />
         </Route>
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<Outlet />}>
           <Route index element={<SelectType />} />
           <Route index path="form" element={<SignUp />} />
-        </Route>
-        <Route path="main" element={<Outlet />}>
-          <Route index element={<Main />} />
         </Route>
         <Route path="mypage" element={<MyPage />} />
       </Route>

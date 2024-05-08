@@ -3,21 +3,34 @@ import styles from './SideBar.module.scss';
 import { Routes, Route, Link, Outlet } from 'react-router-dom';
 import Rating from './Rating';
 import Ranking from './Ranking';
+import Chart from './Chart';
+import AgentConnetion from './AgentConnetion';
 
 const SideBar = () => {
   const [showComponent, setShowComponent] = useState('Rating');
+  const [width, setWidth] = useState('394px');
 
   const handleShowRanking = () => {
     setShowComponent('Ranking');
   };
 
+  const handleShowAgentConnetion = () => {
+    setShowComponent('AgentConnetion');
+  };
+
+  const expandSideBar = () => {
+    setWidth('1264px');
+    setShowComponent('Chart');
+  };
+
   return (
-    <div className={styles.container}>
-      {showComponent === 'Rating' ? (
-        <Rating onAnalyze={handleShowRanking} />
-      ) : (
-        <Ranking />
+    <div className={styles.container} style={{ width: width }}>
+      {showComponent === 'Rating' && <Rating onAnalyze={handleShowRanking} />}
+      {showComponent === 'Ranking' && <Ranking expandSideBar={expandSideBar} />}
+      {showComponent === 'Chart' && (
+        <Chart onClickAgent={handleShowAgentConnetion} />
       )}
+      {showComponent === 'AgentConnetion' && <AgentConnetion />}
     </div>
   );
 };
