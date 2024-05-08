@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { postSignIn } from 'seohyun-apis/SignInApi';
 
 // 로그인 세션 저장
@@ -21,5 +23,10 @@ export const setLoginSession = (email: string, password: string): boolean => {
 export const getLoginToken = () => {
   const sessionStorage = window.sessionStorage;
 
-  sessionStorage.getItem('token');
+  const userToken = sessionStorage.getItem('token');
+  if (userToken) {
+    return userToken;
+  } else {
+    return false;
+  }
 };
