@@ -39,11 +39,15 @@ const Header = () => {
         <div className={styles.right}>
           <div className={styles.menu}>
             <GnbChat className={styles.icon} />
-            <span className={styles.label}>채팅상담</span>
+            <span className={styles.label} onClick={() => navigator('/chat')}>
+              채팅상담
+            </span>
           </div>
           <div className={styles.menu}>
             <GnbSave className={styles.icon} />
-            <span className={styles.label}>동네저장</span>
+            <span className={styles.label} onClick={() => navigator('/save')}>
+              동네저장
+            </span>
           </div>
           <div className={styles.menu} onClick={handleProfileOpen}>
             <GnbProfile className={styles.icon} />
