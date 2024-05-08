@@ -1,15 +1,16 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { postSignIn } from 'seohyun-apis/SignInApi';
+import { useUserStore } from 'utils/useUserStore';
 
-// 로그인 세션 저장
+// 로그인 후 세션에 토큰 저장 및 전역으로 사용자 정보 저장
 export const setLoginSession = (email: string, password: string): boolean => {
   const sessionStorage = window.sessionStorage;
+  const setUser = useUserStore((state) => state.setUser);
 
   // email, password로 로그인 요청 -> 토큰 return
   postSignIn(email, password).then((res) => {
     if (res.isSuccess) {
       sessionStorage.setItem('token', res.data.accessToken);
+      setUser(res.data.name, email, password);
       return true;
     } else {
       return false;
