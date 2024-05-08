@@ -1,9 +1,20 @@
 import React from 'react';
 import styles from './AgentConnetion.module.scss';
 import { LeftArrow } from 'assets';
+import agentData from 'models/agent.json';
 import Agent from 'components/Agent';
 
-const AgentConnetion = () => {
+interface AgentData {
+  id: number;
+  img: string;
+  name: string;
+  location: string;
+  call: string;
+}
+
+const agents: AgentData[] = (agentData as any).agents;
+
+const AgentConnection: React.FC = () => {
   return (
     <div>
       <div className={styles.header}>
@@ -15,23 +26,19 @@ const AgentConnetion = () => {
         맘에 드는 동네를 찾았다면 직접 물어보세요!
       </div>
 
-      {/* 공인중개사무소s */}
       <div className={styles.agents}>
-        <Agent />
-        <Agent />
-        <Agent />
-        <Agent />
-        <Agent />
-        <Agent />
-        <Agent />
-        <Agent />
-        <Agent />
-        <Agent />
-        <Agent />
-        <Agent />
+        {agents.map((agent) => (
+          <Agent
+            key={agent.id}
+            img={agent.img}
+            name={agent.name}
+            location={agent.location}
+            call={agent.call}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
-export default AgentConnetion;
+export default AgentConnection;
