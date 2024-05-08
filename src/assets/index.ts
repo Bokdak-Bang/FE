@@ -1,3 +1,4 @@
+import { LeftArrow } from 'assets';
 export { ReactComponent as GnbLogo } from './icons/logo/logo.svg';
 export { ReactComponent as GnbChat } from './icons/chat-gnb.svg';
 export { ReactComponent as GnbSave } from './icons/save-gnb.svg';
@@ -13,7 +14,10 @@ export { ReactComponent as Traffic } from './icons/traffic.svg';
 export { ReactComponent as Reset } from './icons/reset.svg';
 export { ReactComponent as LeftArrow } from './icons/leftArrow.svg';
 export { ReactComponent as RightArrow } from './icons/rightArrow.svg';
-
+export { ReactComponent as LeftArrowFill } from './icons/leftArrowFill.svg';
+export { ReactComponent as RightArrowFill } from './icons/rightArrowFill.svg';
+export { ReactComponent as Save } from './icons/save.svg';
+export { ReactComponent as Share } from './icons/share.svg';
 export { ReactComponent as Logo150 } from './icons/logo/logo-150.svg';
 export { ReactComponent as User } from './icons/signup-userimg.svg';
 export { ReactComponent as Estate } from './icons/signup-estateimg.svg';

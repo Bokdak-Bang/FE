@@ -1,0 +1,21 @@
+@import '../../../../styles/style.scss';
+
+.header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 11px;
+    margin-left: 8px;
+    @include B1bold;
+  }
+
+  .title{
+    @include H1;
+    color: $gray80;
+    text-align: center;
+    margin-top: 28px;
+}
+
+.agent{
+    display: grid;
+}

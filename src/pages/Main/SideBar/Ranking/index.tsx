@@ -4,7 +4,11 @@ import { LeftArrow } from 'assets';
 import Rank from 'components/Rank';
 import { useNavigate } from 'react-router-dom';
 
-const Ranking = () => {
+interface RankingProps {
+  expandSideBar: () => void;
+}
+
+const Ranking = ({ expandSideBar }: RankingProps) => {
   const navigate = useNavigate();
   const handleBackBtn = () => {
     console.log('back');
@@ -17,19 +21,19 @@ const Ranking = () => {
         <div className={styles.title}>중요도를 고려한 동네 순위예요!</div>
       </div>
       <div className={styles.container}>
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
-        <Rank />
+        <Rank expandSideBar={expandSideBar} />
+        <Rank expandSideBar={expandSideBar} />
+        <Rank expandSideBar={expandSideBar} />
+        <Rank expandSideBar={expandSideBar} />
+        <Rank expandSideBar={expandSideBar} />
+        <Rank expandSideBar={expandSideBar} />
+        <Rank expandSideBar={expandSideBar} />
+        <Rank expandSideBar={expandSideBar} />
+        <Rank expandSideBar={expandSideBar} />
+        <Rank expandSideBar={expandSideBar} />
+        <Rank expandSideBar={expandSideBar} />
+        <Rank expandSideBar={expandSideBar} />
+        <Rank expandSideBar={expandSideBar} />
       </div>
     </>
   );

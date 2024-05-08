@@ -1,0 +1,51 @@
+@import '../../../../styles/style.scss';
+
+.header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 11px;
+  margin-left: 8px;
+  @include B1bold;
+}
+
+.mainTitle {
+  @include H1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 15px;
+  color:$gray80;
+}
+
+.footer{
+    display: flex;
+    position:absolute;
+    bottom: 21px;
+    right: 36px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    bottom: 21px;
+}
+
+.chartsWrapper{
+    display: flex;
+    padding-left: 200px;
+    padding-top: 30px;
+    gap:200px;
+}
+
+.btn{
+ cursor: pointer;
+}
+
+.raderChartWrapper{
+  padding-top: 150px;
+}
+
+.highlight{
+  @include H1;
+  color:$primary50;
+}

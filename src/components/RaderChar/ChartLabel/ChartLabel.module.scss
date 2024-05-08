@@ -1,0 +1,39 @@
+@import "../../../styles/style.scss";
+
+.wrapper{
+
+}
+
+.label{
+    text-align: center;
+    display: block;
+    @include C1;
+    color: $gray80;
+    margin-bottom: 7.8px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 84.762px;
+    height: 84.762px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap:5px;
+    border-radius: 50%;
+    background-color: $gray10;   
+    width: 84.762px;
+    height: 84.762px;
+}
+
+.score{
+    @include C1;
+    color: $gray70;
+}
+.icon{
+    width: 26.659px;
+    height: 23.698px;
+    flex-shrink: 0;
+    color: $gray70;
+}
