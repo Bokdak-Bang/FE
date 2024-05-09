@@ -6,12 +6,22 @@ import { AddImg, Logo150 } from 'assets';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Input from 'components/common/Input';
 import CustomButton from 'components/common/Button';
-import { postSignUp } from 'apis/SignUpApi';
+import { postAgentSignUp, postSignUp } from 'apis/SignUpApi';
+import { setEmitFlags } from 'typescript';
 
 const index = () => {
   const { state } = useLocation();
   const { isUser } = state;
   const navigator = useNavigate();
+
+  const [name, setName] = useState<string>(''); // 사용자인지 공인중개사인지
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [region, setRegion] = useState<string>('');
+  const [estateName, setEstateName] = useState<string>('');
+  const [callNumber, setCallNumber] = useState<string>('');
+  const [address, setAddress] = useState<string>('');
+
   const [currentImg, setCurrentImg] = useState<string>();
 
   const [isSecondPage, setIsSecondPage] = useState<boolean>(false);
@@ -61,37 +71,25 @@ const index = () => {
     }
   };
 
-  // useEffect(() => {}, [isSecondPage, isThirdPage]);
-
   const handleAgentSignUp = () => {
-    const name = nameRef.current?.value;
-    const email = emailRef.current?.value;
-    const password = passwordRef.current?.value;
-    const passwordCheck = passwordCheckRef.current?.value;
-    const region = regionRef.current?.value;
-    const estateName = estateNameRef.current?.value;
-    const callNumber = callNumberRef.current?.value;
-    const address = addressRef.current?.value;
-    if (
-      name &&
-      email &&
-      password &&
-      passwordCheck &&
-      region &&
-      estateName &&
-      callNumber &&
-      address
-    ) {
-      postSignUp(email, name, password, passwordCheck).then((res) => {
-        if (res.isSuccess) {
-          navigator('/signin');
-        } else if (res.code === 'MEMBER_002') {
-          alert('동일한 이메일을 가지는 사용자가 존재합니다!');
-        } else {
-          alert('회원가입 실패');
-        }
-      });
-    }
+    postAgentSignUp(
+      email,
+      name,
+      password,
+      password,
+      region,
+      estateName,
+      callNumber,
+      address,
+    ).then((res) => {
+      if (res.isSuccess) {
+        navigator('/signin');
+      } else if (res.code === 'MEMBER_002') {
+        alert('동일한 이메일을 가지는 사용자가 존재합니다!');
+      } else {
+        alert('회원가입 실패');
+      }
+    });
   };
 
   const handleChangeImg = (e: ChangeEvent<HTMLInputElement>) => {
@@ -248,15 +246,34 @@ const index = () => {
                         passwordCheckRef.current?.value
                       ) {
                         alert('비밀번호를 다시 확인해주세요!');
-                      } else {
+                      } else if (
+                        nameRef.current?.value &&
+                        emailRef.current?.value &&
+                        passwordRef.current?.value &&
+                        passwordCheckRef.current?.value
+                      ) {
+                        setName(nameRef.current?.value);
+                        setEmail(emailRef.current?.value);
+                        setPassword(passwordRef.current?.value);
                         setIsSecondPage(true);
                       }
                     } // 공인중개사 step 1
                   : !isThirdPage
                     ? () => {
                         // 공인중개사 step 2
-                        setIsThirdPage(true);
-                        setIsSecondPage(false);
+                        if (
+                          regionRef.current?.value &&
+                          estateNameRef.current?.value &&
+                          callNumberRef.current?.value &&
+                          addressRef.current?.value
+                        ) {
+                          setRegion(regionRef.current?.value);
+                          setEstateName(estateNameRef.current?.value);
+                          setCallNumber(callNumberRef.current?.value);
+                          setAddress(addressRef.current?.value);
+                          setIsThirdPage(true);
+                          setIsSecondPage(false);
+                        }
                       }
                     : handleAgentSignUp // 공인중개사 step 3
             }
