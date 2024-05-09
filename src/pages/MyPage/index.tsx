@@ -1,9 +1,13 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import styles from './MyPage.module.scss';
 import Input from 'components/common/Input';
 import CustomButton from 'components/common/Button';
+import { getLoginToken } from 'hooks/SignInHooks';
+import { useNavigate } from 'react-router-dom';
 
 const index = () => {
+  const navigator = useNavigate();
+
   const imgRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
@@ -40,6 +44,13 @@ const index = () => {
     const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
     return allowedTypes.includes(file.type);
   };
+
+  useEffect(() => {
+    if (!getLoginToken()) {
+      // 로그인되어있지 않으면 로그인 화면으로 이동
+      navigator('/signin');
+    }
+  }, []);
 
   return (
     <div className={styles.container}>

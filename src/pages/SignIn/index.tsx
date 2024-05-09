@@ -6,6 +6,7 @@ import Input from 'components/common/Input';
 import CustomButton from 'components/common/Button';
 import GuestHeader from 'layouts/GuestHeader';
 import { useNavigate } from 'react-router-dom';
+import { setLoginSession } from 'hooks/SignInHooks';
 
 const index = () => {
   const navigator = useNavigate();
@@ -17,7 +18,17 @@ const index = () => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
 
-    console.log('email: ', email, ', password: ', password);
+    // email 및 password 입력 시
+    if (email && password) {
+      const isLogin = setLoginSession(email, password);
+      if (isLogin) {
+        // 로그인 성공 시 메인 페이지로 이동
+        navigator('/');
+      } else {
+        // 로그인 실패
+        alert('로그인 실패');
+      }
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
