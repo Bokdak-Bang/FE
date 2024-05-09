@@ -27,8 +27,8 @@
 }
 
 .btnWrapper {
-  position: fixed;
-  bottom: 3%;
+  position: absolute;
+  bottom: 0;
   background-color: $wh;
   display: flex;
   gap: 10px;
