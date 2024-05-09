@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Rank.module.scss';
 import { RightArrow } from 'assets';
 import { getAreaBoards } from 'apis/DataBoardsApi';
+import useAreaStore from 'context/useDetailStroe';
 
 interface RankProps {
   rank: number;
@@ -18,6 +19,7 @@ const Rank = ({
   onSelectArea,
   setAreaRank,
 }: RankProps) => {
+  const { areaData } = useAreaStore();
   const regionIds: { [key: string]: number } = {
     강남구: 1,
     강동구: 2,
@@ -58,6 +60,49 @@ const Rank = ({
       .catch((error: any) => {
         console.error('Error fetching boards:', error);
       });
+  };
+  const processDataAndStore = (apiResponse: {
+    data: any;
+    isSuccess: any;
+    code: any;
+  }) => {
+    const { data, isSuccess, code } = apiResponse;
+
+    if (isSuccess && code === '200') {
+      const processedData = {
+        area: data.area,
+        areaBoardScoreResponse: data.areaBoardScoreResponse.map(
+          (item: { categoryName: any; score: any }) => ({
+            categoryName: item.categoryName,
+            score: item.score,
+          }),
+        ),
+        meanScoreResponses: data.meanScoreResponses.map(
+          (item: { detailCategory: any; mean: any }) => ({
+            detailCategory: item.detailCategory,
+            mean: item.mean,
+          }),
+        ),
+        areaBoardCategoryScoreResponses:
+          data.areaBoardCategoryScoreResponses.map(
+            (cat: {
+              categoryname: any;
+              areaDetailBoardResponsList: any[];
+            }) => ({
+              categoryName: cat.categoryname,
+              areaDetailBoardResponsList: cat.areaDetailBoardResponsList.map(
+                (d: { bigCategory: any; detailCategory: any; score: any }) => ({
+                  bigCategory: d.bigCategory,
+                  detailCategory: d.detailCategory,
+                  score: d.score,
+                }),
+              ),
+            }),
+          ),
+      };
+
+      useAreaStore.getState().setAreaData(processedData);
+    }
   };
 
   return (

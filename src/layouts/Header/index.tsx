@@ -12,6 +12,7 @@ import styles from './Header.module.scss';
 import HeaderSearchBar from 'components/SearchBar';
 import { useNavigate } from 'react-router-dom';
 import { useMemberStore } from 'utils/useMemberStore';
+import { getUserAreas } from 'apis/\bDataBoardsApi';
 
 const Header = () => {
   const navigator = useNavigate();
@@ -29,6 +30,16 @@ const Header = () => {
   const handleSave = (s: string) => {
     setTypingValue(s);
     console.log(s);
+  };
+
+  const handleSaveArea = async () => {
+    try {
+      const userAreas = await getUserAreas();
+      console.log('User areas:', userAreas);
+      navigator('/save');
+    } catch (error) {
+      console.error('Failed to fetch user areas:', error);
+    }
   };
 
   return (
@@ -50,7 +61,7 @@ const Header = () => {
           </div>
           <div className={styles.menu}>
             <GnbSave className={styles.icon} />
-            <span className={styles.label} onClick={() => navigator('/save')}>
+            <span className={styles.label} onClick={handleSaveArea}>
               동네저장
             </span>
           </div>

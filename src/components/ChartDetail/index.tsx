@@ -3,6 +3,7 @@ import { RightArrowFill, LeftArrowFill } from 'assets';
 import styles from './ChartDetail.module.scss';
 import BarChart from 'components/BarChart';
 import chartData from 'models/chartDataSets.json';
+import useAreaStore from 'context/useDetailStroe';
 
 interface ChartDetailProps {
   setSelected: (selected: string) => void;
@@ -22,6 +23,8 @@ interface ChartData {
 const data: ChartData = chartData;
 
 const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
+  const { areaData } = useAreaStore();
+  console.log('areaData:', areaData);
   const categories = [
     '자연',
     '주택',
