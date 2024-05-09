@@ -1,5 +1,5 @@
 import GuestHeader from 'layouts/GuestHeader';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './SelectType.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { Logo150 } from 'assets';

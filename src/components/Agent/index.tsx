@@ -1,8 +1,7 @@
-import React from 'react';
 import { Location, Call } from 'assets';
 import Button from 'components/common/Button';
 import styles from './Agent.module.scss';
-import { 동네전문가 } from 'assets';
+// import { 동네전문가 } from 'assets';
 
 interface AgentProps {
   img: string;

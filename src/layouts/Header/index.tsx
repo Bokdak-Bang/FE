@@ -18,6 +18,7 @@ const Header = () => {
   const getMember = useMemberStore((state) => state.getMember);
   const userName = getMember();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [typingValue, setTypingValue] = useState<string>('');
   const [isOpen, setIsOpen] = useState<boolean>(false);
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { RightArrowFill, LeftArrowFill } from 'assets';
 import styles from './ChartDetail.module.scss';
 import BarChart from 'components/BarChart';

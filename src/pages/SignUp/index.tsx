@@ -1,11 +1,12 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { ChangeEvent, useRef, useState } from 'react';
 import styles from './SignUp.module.scss';
 import GuestHeader from 'layouts/GuestHeader';
 import { AddImg, Logo150 } from 'assets';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Input from 'components/common/Input';
 import CustomButton from 'components/common/Button';
-import { postSignUp } from 'apis/SignUpApi';
+// import { postSignUp } from 'apis/SignUpApi';
 
 const index = () => {
   const { state } = useLocation();
@@ -29,11 +30,10 @@ const index = () => {
   const imgRef = useRef<HTMLInputElement>(null);
 
   const handleMemberSignUp = () => {
-    const name = nameRef.current?.value;
-    const email = emailRef.current?.value;
-    const password = passwordRef.current?.value;
-    const passwordCheck = passwordCheckRef.current?.value;
-
+    // const name = nameRef.current?.value;
+    // const email = emailRef.current?.value;
+    // const password = passwordRef.current?.value;
+    // const passwordCheck = passwordCheckRef.current?.value;
     // if (name && email && password && passwordCheck) {
     //   postSignUp(email, name, password, passwordCheck).then((res) => {
     //     if (res.isSuccess) {
@@ -50,39 +50,38 @@ const index = () => {
   // useEffect(() => {}, [isSecondPage, isThirdPage]);
 
   const handleAgentSignUp = () => {
-    const name = nameRef.current?.value;
-    const email = emailRef.current?.value;
-    const password = passwordRef.current?.value;
-    const passwordCheck = passwordCheckRef.current?.value;
-    const region = regionRef.current?.value;
-    const estateName = estateNameRef.current?.value;
-    const callNumber = callNumberRef.current?.value;
-    const address = addressRef.current?.value;
-
-    if (
-      name &&
-      email &&
-      password &&
-      passwordCheck &&
-      region &&
-      estateName &&
-      callNumber &&
-      address
-    ) {
-      if (password !== passwordCheck) {
-        alert('비밀번호를 다시 확인해주세요!');
-      } else {
-        postSignUp(email, name, password, passwordCheck).then((res) => {
-          if (res.isSuccess) {
-            navigator('/signin');
-          } else if (res.code === 'MEMBER_002') {
-            alert('동일한 이메일을 가지는 사용자가 존재합니다!');
-          } else {
-            alert('회원가입 실패');
-          }
-        });
-      }
-    }
+    // const name = nameRef.current?.value;
+    // const email = emailRef.current?.value;
+    // const password = passwordRef.current?.value;
+    // const passwordCheck = passwordCheckRef.current?.value;
+    // const region = regionRef.current?.value;
+    // const estateName = estateNameRef.current?.value;
+    // const callNumber = callNumberRef.current?.value;
+    // const address = addressRef.current?.value;
+    // if (
+    //   name &&
+    //   email &&
+    //   password &&
+    //   passwordCheck &&
+    //   region &&
+    //   estateName &&
+    //   callNumber &&
+    //   address
+    // ) {
+    //   if (password !== passwordCheck) {
+    //     alert('비밀번호를 다시 확인해주세요!');
+    //   } else {
+    //     postSignUp(email, name, password, passwordCheck).then((res) => {
+    //       if (res.isSuccess) {
+    //         navigator('/signin');
+    //       } else if (res.code === 'MEMBER_002') {
+    //         alert('동일한 이메일을 가지는 사용자가 존재합니다!');
+    //       } else {
+    //         alert('회원가입 실패');
+    //       }
+    //     });
+    //   }
+    // }
   };
 
   const handleChangeImg = (e: ChangeEvent<HTMLInputElement>) => {
@@ -201,8 +200,8 @@ const index = () => {
                         setIsThirdPage(true);
                         setIsSecondPage(false);
                         if (
-                          passwordRef.current!.value !==
-                          passwordCheckRef.current!.value
+                          passwordRef.current?.value !==
+                          passwordCheckRef.current?.value
                         ) {
                           alert('비밀번호를 다시 확인해주세요!');
                         }
@@ -211,7 +210,7 @@ const index = () => {
                         addressRef.current!.value = '';
                         estateNameRef.current!.value = '';
                       }
-                    : () => console.log('공인중개사 가입') // 공인중개사 step 3
+                    : handleAgentSignUp // 공인중개사 step 3
             }
           />
         </div>
