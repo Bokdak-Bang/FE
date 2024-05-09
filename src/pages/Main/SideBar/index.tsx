@@ -6,7 +6,11 @@ import Ranking from './Ranking';
 import Chart from './Chart';
 import AgentConnetion from './AgentConnetion';
 
-const SideBar = () => {
+interface SideBarProps {
+  onSelectArea: (area: string) => void;
+}
+
+const SideBar = ({ onSelectArea }: SideBarProps) => {
   const [showComponent, setShowComponent] = useState('Rating');
   const [width, setWidth] = useState('394px');
 
@@ -26,7 +30,9 @@ const SideBar = () => {
   return (
     <div className={styles.container} style={{ width: width }}>
       {showComponent === 'Rating' && <Rating onAnalyze={handleShowRanking} />}
-      {showComponent === 'Ranking' && <Ranking expandSideBar={expandSideBar} />}
+      {showComponent === 'Ranking' && (
+        <Ranking expandSideBar={expandSideBar} onSelectArea={onSelectArea} />
+      )}
       {showComponent === 'Chart' && (
         <Chart onClickAgent={handleShowAgentConnetion} />
       )}

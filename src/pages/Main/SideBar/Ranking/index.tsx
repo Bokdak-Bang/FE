@@ -3,13 +3,14 @@ import styles from './Ranking.module.scss';
 import { LeftArrow } from 'assets';
 import Rank from 'components/Rank';
 import { useNavigate } from 'react-router-dom';
+import ranks from 'models/rank.json';
 
 interface RankingProps {
   expandSideBar: () => void;
+  onSelectArea: (area: string) => void;
 }
 
-const Ranking = ({ expandSideBar }: RankingProps) => {
-  const navigate = useNavigate();
+const Ranking = ({ expandSideBar, onSelectArea }: RankingProps) => {
   const handleBackBtn = () => {
     console.log('back');
     window.location.reload();
@@ -21,19 +22,15 @@ const Ranking = ({ expandSideBar }: RankingProps) => {
         <div className={styles.title}>중요도를 고려한 동네 순위예요!</div>
       </div>
       <div className={styles.container}>
-        <Rank expandSideBar={expandSideBar} />
-        <Rank expandSideBar={expandSideBar} />
-        <Rank expandSideBar={expandSideBar} />
-        <Rank expandSideBar={expandSideBar} />
-        <Rank expandSideBar={expandSideBar} />
-        <Rank expandSideBar={expandSideBar} />
-        <Rank expandSideBar={expandSideBar} />
-        <Rank expandSideBar={expandSideBar} />
-        <Rank expandSideBar={expandSideBar} />
-        <Rank expandSideBar={expandSideBar} />
-        <Rank expandSideBar={expandSideBar} />
-        <Rank expandSideBar={expandSideBar} />
-        <Rank expandSideBar={expandSideBar} />
+        {ranks.map((rank) => (
+          <Rank
+            key={rank.id}
+            rank={rank.rank}
+            location={rank.location}
+            expandSideBar={expandSideBar}
+            onSelectArea={onSelectArea}
+          />
+        ))}
       </div>
     </>
   );

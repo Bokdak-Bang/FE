@@ -21,13 +21,13 @@ interface RatingProps {
 const Rating = ({ onAnalyze }: RatingProps) => {
   const navigate = useNavigate();
   const [values, setValues] = useState({
-    natureValue: 1,
-    houseValue: 1,
-    populationValue: 1,
-    safetyValue: 1,
-    trafficValue: 1,
-    educationValue: 1,
-    welfareValue: 1,
+    natureValue: 2.5,
+    houseValue: 2.5,
+    populationValue: 2.5,
+    safetyValue: 2.5,
+    trafficValue: 2.5,
+    educationValue: 2.5,
+    welfareValue: 2.5,
   });
 
   // 각 슬라이더 값을 설정하는 함수
