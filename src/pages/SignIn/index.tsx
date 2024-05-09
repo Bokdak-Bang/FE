@@ -6,9 +6,13 @@ import Input from 'components/common/Input';
 import CustomButton from 'components/common/Button';
 import GuestHeader from 'layouts/GuestHeader';
 import { useNavigate } from 'react-router-dom';
-import { setLoginSession } from 'hooks/SignInHooks';
+import { postSignIn } from 'apis/SignInApi';
+import { useMemberStore } from 'utils/useMemberStore';
 
 const index = () => {
+  const sessionStorage = window.sessionStorage;
+  const setMember = useMemberStore((state) => state.setMember);
+
   const navigator = useNavigate();
 
   const emailRef = useRef<HTMLInputElement>(null);
@@ -18,16 +22,19 @@ const index = () => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
 
-    // email 및 password 입력 시
+    // email, password로 로그인 요청 -> 토큰 return
     if (email && password) {
-      const isLogin = setLoginSession(email, password);
-      if (isLogin) {
-        // 로그인 성공 시 메인 페이지로 이동
-        navigator('/');
-      } else {
-        // 로그인 실패
-        alert('로그인 실패');
-      }
+      postSignIn(email, password).then((res) => {
+        if (res.isSuccess) {
+          // 로그인 성공
+          sessionStorage.setItem('token', res.data.accessToken);
+          setMember(res.data.name);
+          navigator('/');
+        } else {
+          // 로그인 실패
+          alert('로그인 실패');
+        }
+      });
     }
   };
 

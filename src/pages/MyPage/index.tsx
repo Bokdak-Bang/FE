@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import styles from './MyPage.module.scss';
 import Input from 'components/common/Input';
 import CustomButton from 'components/common/Button';
@@ -22,13 +22,14 @@ const index = () => {
     const name = nameRef.current?.value;
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const passwordCheck = passwordCheckRef.current?.value;
 
     console.log('name: ', name, ', email: ', email, ', password: ', password);
   };
 
   const handleChangeImg = (e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target!.files;
+    const files = e.target?.files;
     if (files) {
       const newImg: File = files[0];
       // 이미지 파일 유효성 검사

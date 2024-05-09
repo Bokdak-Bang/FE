@@ -1,4 +1,3 @@
-import { LeftArrow } from 'assets';
 export { ReactComponent as GnbLogo } from './icons/logo/logo.svg';
 export { ReactComponent as GnbChat } from './icons/chat-gnb.svg';
 export { ReactComponent as GnbSave } from './icons/save-gnb.svg';
@@ -27,3 +26,4 @@ export { ReactComponent as DropDown3 } from './icons/gnb-dropdown3.svg';
 export { ReactComponent as Location } from './icons/location.svg';
 export { ReactComponent as Call } from './icons/call.svg';
 export { ReactComponent as 동네전문가 } from './icons/동네전문가.svg';
+export { ReactComponent as AddImg } from './icons/addAgentImg.svg';
