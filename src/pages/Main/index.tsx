@@ -3,10 +3,16 @@ import Map from 'components/Map';
 import SideBar from './SideBar';
 
 const Main = () => {
+  const [activeArea, setActiveArea] = useState('');
+
+  useEffect(() => {
+    console.log(`active area: ${activeArea}`);
+  }, [activeArea]);
+
   return (
     <>
-      <SideBar />
-      <Map />
+      <SideBar onSelectArea={setActiveArea} />
+      <Map activeArea={activeArea} />
     </>
   );
 };
