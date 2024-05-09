@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import styles from './SignUp.module.scss';
 import GuestHeader from 'layouts/GuestHeader';
 import { AddImg, Logo150 } from 'assets';
@@ -34,16 +34,54 @@ const index = () => {
     const password = passwordRef.current?.value;
     const passwordCheck = passwordCheckRef.current?.value;
 
-    if (name && email && password && passwordCheck) {
-      postSignUp(email, name, password, passwordCheck).then((res) => {
-        if (res.isSuccess) {
-          navigator('/signin');
-        } else if (res.code === 'MEMBER_002') {
-          alert('동일한 이메일을 가지는 사용자가 존재합니다!');
-        } else {
-          alert('회원가입 실패');
-        }
-      });
+    // if (name && email && password && passwordCheck) {
+    //   postSignUp(email, name, password, passwordCheck).then((res) => {
+    //     if (res.isSuccess) {
+    //       navigator('/signin');
+    //     } else if (res.code === 'MEMBER_002') {
+    //       alert('동일한 이메일을 가지는 사용자가 존재합니다!');
+    //     } else {
+    //       alert('회원가입 실패');
+    //     }
+    //   });
+    // }
+  };
+
+  // useEffect(() => {}, [isSecondPage, isThirdPage]);
+
+  const handleAgentSignUp = () => {
+    const name = nameRef.current?.value;
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+    const passwordCheck = passwordCheckRef.current?.value;
+    const region = regionRef.current?.value;
+    const estateName = estateNameRef.current?.value;
+    const callNumber = callNumberRef.current?.value;
+    const address = addressRef.current?.value;
+
+    if (
+      name &&
+      email &&
+      password &&
+      passwordCheck &&
+      region &&
+      estateName &&
+      callNumber &&
+      address
+    ) {
+      if (password !== passwordCheck) {
+        alert('비밀번호를 다시 확인해주세요!');
+      } else {
+        postSignUp(email, name, password, passwordCheck).then((res) => {
+          if (res.isSuccess) {
+            navigator('/signin');
+          } else if (res.code === 'MEMBER_002') {
+            alert('동일한 이메일을 가지는 사용자가 존재합니다!');
+          } else {
+            alert('회원가입 실패');
+          }
+        });
+      }
     }
   };
 
@@ -95,7 +133,12 @@ const index = () => {
             </>
           ) : isSecondPage ? (
             <>
-              <Input type="text" placeHolder="담당 행정구" ref={regionRef} />
+              <Input
+                type="text"
+                placeHolder="담당 행정구"
+                ref={regionRef}
+                value=""
+              />
               <Input type="text" placeHolder="상호명" ref={estateNameRef} />
               <Input type="tel" placeHolder="전화번호" ref={callNumberRef} />
               <Input type="text" placeHolder="주소" ref={addressRef} />
@@ -157,6 +200,16 @@ const index = () => {
                         // 공인중개사 step 2
                         setIsThirdPage(true);
                         setIsSecondPage(false);
+                        if (
+                          passwordRef.current!.value !==
+                          passwordCheckRef.current!.value
+                        ) {
+                          alert('비밀번호를 다시 확인해주세요!');
+                        }
+                        regionRef.current!.value = '';
+                        callNumberRef.current!.value = '';
+                        addressRef.current!.value = '';
+                        estateNameRef.current!.value = '';
                       }
                     : () => console.log('공인중개사 가입') // 공인중개사 step 3
             }
