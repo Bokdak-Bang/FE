@@ -56,11 +56,14 @@ const Rank = ({
     getAreaBoards(areaId)
       .then((response: any) => {
         console.log('Boards:', response);
+        processDataAndStore(response);
       })
       .catch((error: any) => {
         console.error('Error fetching boards:', error);
       });
   };
+
+  // 가공
   const processDataAndStore = (apiResponse: {
     data: any;
     isSuccess: any;
@@ -86,10 +89,10 @@ const Rank = ({
         areaBoardCategoryScoreResponses:
           data.areaBoardCategoryScoreResponses.map(
             (cat: {
-              categoryname: any;
+              categoryName: any;
               areaDetailBoardResponsList: any[];
             }) => ({
-              categoryName: cat.categoryname,
+              categoryName: cat.categoryName,
               areaDetailBoardResponsList: cat.areaDetailBoardResponsList.map(
                 (d: { bigCategory: any; detailCategory: any; score: any }) => ({
                   bigCategory: d.bigCategory,
@@ -101,7 +104,10 @@ const Rank = ({
           ),
       };
 
+      // 데이터를 Zustand 스토어에 저장
       useAreaStore.getState().setAreaData(processedData);
+    } else {
+      console.error('Failed to process data:', apiResponse);
     }
   };
 

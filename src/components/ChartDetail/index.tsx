@@ -107,7 +107,6 @@ const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
           <div className={styles.valueContainer}>
             {' '}
             <div className={styles.leftInfo}>24.6</div>
-            <div className={styles.ect}>(단위 : ㎍/㎥)</div>
           </div>
         </div>
         <div
