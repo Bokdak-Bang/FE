@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import path from 'path';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from 'react';
