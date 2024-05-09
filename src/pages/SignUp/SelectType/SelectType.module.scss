@@ -1,0 +1,35 @@
+@import '../../../styles/style.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $gray80;
+  margin-top: 70px;
+  margin-bottom: 30px;
+}
+
+.label {
+  margin-top: 22px;
+  margin-bottom: 44px;
+  display: flex;
+  gap: 6px;
+  @include B2med;
+
+  .signUp {
+    color: $primary50;
+    cursor: pointer;
+  }
+}
+
+.types {
+  display: flex;
+  gap: 52px;
+  margin-bottom: 63px;
+}

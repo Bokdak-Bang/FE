@@ -1,0 +1,43 @@
+@import '../../../../styles/style.scss';
+
+.header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 11px;
+    margin-left: 8px;
+    @include B1bold;
+  }
+
+  .title{
+    @include H1;
+    color: $gray80;
+    text-align: center;
+    margin-top: 28px;
+    margin-bottom: 15px;
+}
+
+.agents {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(558px, 1fr));
+  gap: 23px;
+  padding: 26px; 
+  padding-bottom: 0px;
+  justify-content: center;
+  height: 600px;
+  overflow-y: auto;
+}
+
+.agents::-webkit-scrollbar {
+  width: 3px;
+}
+
+.agents::-webkit-scrollbar-track {
+  border-radius: 14.5px;
+  background: $gray20;
+}
+
+.agents::-webkit-scrollbar-thumb {
+  border-radius: 14.5px;
+  background-color: $gray60;
+}

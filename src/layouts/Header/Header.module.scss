@@ -1,0 +1,91 @@
+@import '../../styles/style.scss';
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 28px;
+  width: 100%;
+}
+
+.right {
+  display: flex;
+  gap: 43px;
+
+  @include B2med;
+  color: $gray80;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.menu:hover {
+  color: $primary50;
+  cursor: pointer;
+  fill: $primary50;
+
+  .icon path {
+    color: $primary50;
+    fill: $primary50;
+  }
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+
+  color: $gray80;
+  @include B2med;
+}
+
+.dropDown {
+  position: absolute;
+  top: 60px;
+  right: 31px;
+  z-index: 10;
+  width: 289px;
+  height: 264px;
+  background: $wh;
+  border-radius: 20px;
+  border: 1px solid $gray30;
+  box-shadow: 0px 0px 14.8px 0px rgba(107, 110, 116, 0.14);
+
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    padding: 25px 24px 21px 24px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    @include H2reg;
+    color: #333236;
+
+    .img {
+      width: 76px;
+      height: 76px;
+      border-radius: 100px;
+      background-color: $primary05;
+    }
+  }
+  .content {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 21px;
+    @include H2reg;
+    color: $gray60;
+
+    cursor: pointer;
+  }
+
+  .seperator {
+    height: 1px;
+    background: $gray20;
+  }
+}

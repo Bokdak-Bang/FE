@@ -1,0 +1,63 @@
+@import '../../styles/style.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $gray80;
+  margin-top: 70px;
+  margin-bottom: 30px;
+}
+
+.label {
+  margin-top: 22px;
+  margin-bottom: 44px;
+  display: flex;
+  gap: 6px;
+  @include B2med;
+
+  .signUp {
+    color: $primary50;
+    cursor: pointer;
+  }
+}
+
+.imgContainer {
+  @include H2med;
+
+  .title {
+    color: $gray60;
+  }
+
+  .label {
+    color: $gray40;
+  }
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 67px;
+}
+
+.btnContainer {
+  display: flex;
+  gap: 8px;
+}
+
+label {
+  cursor: pointer;
+}
+
+.changedImg {
+  width: 412px;
+  height: 150px;
+  object-fit: cover;
+}

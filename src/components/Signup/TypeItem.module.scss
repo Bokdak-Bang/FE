@@ -1,0 +1,49 @@
+@import '../../styles/style.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #d6d6d7;
+  border-radius: 8px;
+  padding: 31px 66px;
+}
+
+.container:focus {
+  border-color: #169898;
+}
+
+.labelContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  @include H2reg;
+  color: #333236;
+  margin-bottom: 13px;
+
+  .underline {
+    position: absolute;
+    width: 105%;
+    height: 17px;
+    top: 6px;
+    background-color: $primary05;
+    z-index: -1;
+  }
+}
+
+.title {
+  margin-top: 2px;
+  @include H2reg;
+  color: #333236;
+}
+
+.content {
+  margin-top: 33px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  @include B2reg;
+  color: #858486;
+}
