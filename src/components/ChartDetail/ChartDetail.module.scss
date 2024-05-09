@@ -34,6 +34,27 @@
     text-align: center;
     color:$gray70;
     @include C1;
+    cursor: pointer;
+    &:hover{
+        border: 1px solid $primary50;
+        background: $primary05;
+        
+    }
+}
+
+.selectedInfo{
+    display: inline-flex;
+    padding: 4px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 19px;
+    border-radius: 15px;
+    border: 1px solid $primary50;
+    background: $primary05;
+    text-align: center;
+    color:$gray70;
+    @include C1;
+    cursor: pointer;
 }
 
 .title{

@@ -1,9 +1,5 @@
 @import "../../../styles/style.scss";
 
-.wrapper{
-
-}
-
 .label{
     text-align: center;
     display: block;
@@ -26,7 +22,20 @@
     width: 84.762px;
     height: 84.762px;
 }
-
+.selectedContainer{
+    display: flex;
+    flex-direction: column;
+    width: 84.762px;
+    height: 84.762px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap:5px;
+    border-radius: 50%;
+    background-color: $primary05;   
+    width: 84.762px;
+    height: 84.762px;
+}
 .score{
     @include C1;
     color: $gray70;
@@ -37,3 +46,9 @@
     flex-shrink: 0;
     color: $gray70;
 }
+
+.selectedScore{
+    @include C1;
+    color: $primary50;
+}
+
