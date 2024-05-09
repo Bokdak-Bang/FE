@@ -65,7 +65,7 @@ const Rating = ({ onAnalyze }: RatingProps) => {
   ];
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.title}>당신의 삶에는 어떤 게 중요할까요?</div>
       {sliderComponents.map(({ key, title, Icon }) => (
         <Slider
@@ -89,7 +89,7 @@ const Rating = ({ onAnalyze }: RatingProps) => {
           onClick={handleAnalyzeClick}
         />
       </div>
-    </>
+    </div>
   );
 };
 

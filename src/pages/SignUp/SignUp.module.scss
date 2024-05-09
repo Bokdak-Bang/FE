@@ -28,6 +28,18 @@
   }
 }
 
+.imgContainer {
+  @include H2med;
+
+  .title {
+    color: $gray60;
+  }
+
+  .label {
+    color: $gray40;
+  }
+}
+
 .inputContainer {
   display: flex;
   flex-direction: column;
@@ -38,4 +50,14 @@
 .btnContainer {
   display: flex;
   gap: 8px;
+}
+
+label {
+  cursor: pointer;
+}
+
+.changedImg {
+  width: 412px;
+  height: 150px;
+  object-fit: cover;
 }

@@ -1,25 +1,19 @@
 import { create } from 'zustand';
 
+// 헤더에서 이름만 보여주면 됨
 export type Member = {
   name: string;
-  email: string;
-  password: string;
-  setMember: (name: string, email: string, password: string) => void;
-  getMember: () => void;
+  setMember: (name: string) => void;
+  getMember: () => string;
 };
 
 export const useMemberStore = create<Member>((set, get) => ({
   name: '',
-  email: '',
-  password: '',
 
-  setMember: (name: string, email: string, password: string) =>
-    set({ name: name, email: email, password: password }),
+  setMember: (name: string) => set({ name: name }),
 
   getMember: () => {
     const name = get().name;
-    const email = get().email;
-    const password = get().password;
-    return { name, email, password };
+    return name;
   },
 }));

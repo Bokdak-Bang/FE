@@ -11,9 +11,14 @@ import React, { useState } from 'react';
 import styles from './Header.module.scss';
 import HeaderSearchBar from 'components/SearchBar';
 import { useNavigate } from 'react-router-dom';
+import { useMemberStore } from 'utils/useMemberStore';
 
 const Header = () => {
   const navigator = useNavigate();
+  const getMember = useMemberStore((state) => state.getMember);
+  const userName = getMember();
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [typingValue, setTypingValue] = useState<string>('');
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -59,7 +64,7 @@ const Header = () => {
         <div className={styles.dropDown}>
           <div className={styles.header}>
             <img src="images/profile-default.svg" className={styles.img} />{' '}
-            홍길동 님
+            {userName ? { userName } + ' 님' : 'guest'}
           </div>
           <div className={styles.seperator} />
           <div className={styles.content} onClick={() => navigator('/mypage')}>
