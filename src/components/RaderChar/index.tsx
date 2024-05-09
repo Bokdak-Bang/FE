@@ -39,7 +39,12 @@ interface LabelPosition {
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
 }
 
-const RadarChart: React.FC = () => {
+interface RadarChartProps {
+  setSelected: (selected: string) => void;
+  selected: string;
+}
+
+const RadarChart = ({ setSelected, selected }: RadarChartProps) => {
   const chartRef = useRef<Chart<'radar', number[], string> | null>(null);
   const [labelPositions, setLabelPositions] = useState<LabelPosition[]>([]);
 
@@ -148,7 +153,7 @@ const RadarChart: React.FC = () => {
         setLabelPositions(newLabelPositions);
       }
     }
-  }, [chartRef, chartRef.current, icons]);
+  }, [chartRef]);
 
   return (
     <div className={styles.wrapper}>
@@ -163,7 +168,10 @@ const RadarChart: React.FC = () => {
             position: 'absolute',
             left: `${pos.x - 20}px`,
             top: `${pos.y - 10}px`,
+            cursor: 'pointer',
           }}
+          onClick={() => setSelected(pos.label)}
+          selected={selected}
         />
       ))}
     </div>

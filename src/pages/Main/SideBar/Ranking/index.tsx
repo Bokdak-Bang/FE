@@ -8,9 +8,16 @@ import ranks from 'models/rank.json';
 interface RankingProps {
   expandSideBar: () => void;
   onSelectArea: (area: string) => void;
+  setAreaRank: (area: string, rank: number) => void;
+  area: string;
+  rank: number;
 }
 
-const Ranking = ({ expandSideBar, onSelectArea }: RankingProps) => {
+const Ranking = ({
+  expandSideBar,
+  onSelectArea,
+  setAreaRank,
+}: RankingProps) => {
   const handleBackBtn = () => {
     console.log('back');
     window.location.reload();
@@ -29,6 +36,7 @@ const Ranking = ({ expandSideBar, onSelectArea }: RankingProps) => {
             location={rank.location}
             expandSideBar={expandSideBar}
             onSelectArea={onSelectArea}
+            setAreaRank={setAreaRank}
           />
         ))}
       </div>

@@ -7,9 +7,20 @@ interface RankProps {
   location: string;
   expandSideBar: () => void;
   onSelectArea: (area: string) => void;
+  setAreaRank: (area: string, rank: number) => void;
 }
 
-const Rank = ({ expandSideBar, rank, location, onSelectArea }: RankProps) => {
+const Rank = ({
+  expandSideBar,
+  rank,
+  location,
+  onSelectArea,
+  setAreaRank,
+}: RankProps) => {
+  const handleNextBtn = () => {
+    expandSideBar;
+    setAreaRank(location, rank);
+  };
   return (
     <div
       onMouseEnter={() => {
@@ -20,7 +31,7 @@ const Rank = ({ expandSideBar, rank, location, onSelectArea }: RankProps) => {
         console.log(`${location}`);
         onSelectArea('');
       }}
-      onClick={expandSideBar}
+      onClick={handleNextBtn}
       className={`${styles.container} ${rank <= 3 ? styles.topRank : ''}`}
     >
       <div className={`${styles.number} ${rank <= 3 ? styles.topNumber : ''}`}>

@@ -1,6 +1,6 @@
 import path from 'path';
 import React, { useEffect } from 'react';
-import styles from './Map.module.css';
+import styles from './Map.module.scss';
 
 declare global {
   interface Window {

@@ -7,11 +7,19 @@ import { LeftArrow, Share, Save } from 'assets';
 
 interface AgentConnetionProps {
   onClickAgent: () => void;
+  area: string;
+  rank: number;
+  setAreaRank: (area: string, rank: number) => void;
 }
 
-const Chart = ({ onClickAgent }: AgentConnetionProps) => {
-  const [selectedLocation, setSelectedLocation] = useState<string>('강남구');
-  const [selected, setSelected] = useState<string>('nature');
+const Chart = ({
+  onClickAgent,
+  area,
+  rank,
+  setAreaRank,
+}: AgentConnetionProps) => {
+  // 선택된 지표가 뭐니?
+  const [selected, setSelected] = useState<string>('자연');
 
   const handleShareBtn = () => {
     console.log('share');
@@ -28,16 +36,22 @@ const Chart = ({ onClickAgent }: AgentConnetionProps) => {
       <div className={styles.mainTitle}>
         <div>
           홍길동 님에게 추천하는 동네{' '}
-          <span className={styles.highlight}>1위 강남구</span>
+          <span className={styles.highlight}>
+            {rank}위 {area}
+          </span>
         </div>
       </div>
 
       {/* 차트 모음 */}
       <div className={styles.chartsWrapper}>
         <div className={styles.raderChartWrapper}>
-          <RaderChart />
+          <RaderChart setSelected={setSelected} selected={selected} />
         </div>
-        <ChartDetail />
+        <ChartDetail
+          setSelected={setSelected}
+          selected={selected}
+          area={area}
+        />
       </div>
 
       {/* 맨아래 공유/저장/공인중개사 연결 */}
