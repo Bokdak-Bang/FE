@@ -10,7 +10,28 @@
     flex-shrink: 0;
     border-radius: 8.864px;
     border: 0.682px solid $gray30;
+    cursor: pointer;
     background: $wh;
+    &:hover{
+        background: $primary05;
+    }
+}
+
+.topRank{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 19px 29px;
+    width: 320px;
+    height: 64px;
+    flex-shrink: 0;
+    border-radius: 8.864px;
+    border: 0.682px solid $primary40;
+    cursor: pointer;
+    background: $wh;
+    &:hover{
+        background: $primary05;
+    }
 }
 .town{
     @include H2med;
@@ -26,6 +47,12 @@
     @include number;
     color: $gray80;
 }
+.topNumber{
+
+    @include number;
+    color: $primary50;
+}
+
 .wrapper{
     display: flex;
     flex-direction: row;
