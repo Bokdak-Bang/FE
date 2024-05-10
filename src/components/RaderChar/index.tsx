@@ -79,7 +79,7 @@ const RadarChart = ({ setSelected, selected }: RadarChartProps) => {
       (score) => score.categoryName === category,
     );
     //버그
-    return foundScore ? foundScore.score : 70;
+    return foundScore ? foundScore.score : 50;
   });
 
   const icons = [
