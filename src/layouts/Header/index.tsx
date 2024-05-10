@@ -40,9 +40,12 @@ const Header = () => {
 
   const handleSaveArea = async () => {
     try {
-      const userAreas = await getUserAreas();
-      console.log('User areas:', userAreas);
-      navigator('/save');
+      const response = await getUserAreas();
+      if (response.code === '200' && response.isSuccess) {
+        navigator('/save', { state: { userAreas: response.data } });
+      } else {
+        console.error('Error fetching areas:', response.message);
+      }
     } catch (error) {
       console.error('Failed to fetch user areas:', error);
     }
