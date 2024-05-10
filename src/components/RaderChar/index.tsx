@@ -78,7 +78,8 @@ const RadarChart = ({ setSelected, selected }: RadarChartProps) => {
     const foundScore = areaData?.areaBoardScoreResponse.find(
       (score) => score.categoryName === category,
     );
-    return foundScore ? foundScore.score : 0;
+    //버그
+    return foundScore ? foundScore.score : 70;
   });
 
   const icons = [
@@ -90,6 +91,7 @@ const RadarChart = ({ setSelected, selected }: RadarChartProps) => {
     Education,
     Welfare,
   ];
+
   const chartData = {
     labels: dataOrder,
     datasets: [
