@@ -141,9 +141,23 @@ const RadarChart = ({ setSelected, selected }: RadarChartProps) => {
     },
   };
 
+  const getOrderedData = () => {
+    return dataOrder.map((label) => {
+      const category = categoryMap[label];
+      const foundScore = areaData?.areaBoardScoreResponse.find(
+        (score) => score.categoryName === category,
+      );
+      return foundScore ? foundScore.score : 50;
+    });
+  };
+
   useEffect(() => {
-    if (chartRef.current) {
+    if (chartRef.current && areaData) {
       const chartInstance = chartRef.current;
+      chartInstance.data.datasets[0].data = getOrderedData();
+      chartInstance.update();
+
+      // Label positions update
       const centerPoint = {
         x:
           (chartInstance.chartArea.left + chartInstance.chartArea.right) / 2 -
@@ -153,33 +167,34 @@ const RadarChart = ({ setSelected, selected }: RadarChartProps) => {
           55,
       };
       const radialScale = chartInstance.scales.r as RadialLinearScale;
-      const maxRadius = radialScale.max + 95;
+      const maxRadius = radialScale.max + 110;
       const dataValues = chartInstance.data.datasets[0].data;
-
-      if (chartInstance.data && chartInstance.data.labels) {
-        const labelCount = chartInstance.data.labels.length;
-
-        const newLabelPositions = chartInstance.data.labels.map(
-          (label, index) => {
-            const angle = (2 * Math.PI * index) / labelCount - Math.PI / 2;
-            const x = centerPoint.x + maxRadius * Math.cos(angle);
-            const y = centerPoint.y + maxRadius * Math.sin(angle);
-            const score = dataValues[index];
-
-            return {
-              x: x,
-              y: y,
-              label: label,
-              score: score,
-              icon: icons[index],
-            };
-          },
-        );
-
-        setLabelPositions(newLabelPositions);
-      }
+      const labelCount = chartInstance.data.labels?.length ?? 0;
+      const newLabelPositions = (chartInstance.data.labels ?? []).map(
+        (label, index) => {
+          const angle = (2 * Math.PI * index) / labelCount - Math.PI / 2;
+          const x = centerPoint.x + maxRadius * Math.cos(angle);
+          const y = centerPoint.y + maxRadius * Math.sin(angle);
+          return {
+            x,
+            y,
+            label,
+            score: dataValues[index],
+            icon: [
+              Nature,
+              House,
+              Population,
+              Safety,
+              Traffic,
+              Education,
+              Welfare,
+            ][index],
+          };
+        },
+      );
+      setLabelPositions(newLabelPositions);
     }
-  }, [chartRef]);
+  }, [areaData, chartRef]);
 
   return (
     <div className={styles.wrapper}>
