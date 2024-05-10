@@ -4344,17 +4344,6 @@ const Map = ({ activeArea }: MapProps) => {
         });
         if (area.name === activeArea) {
           polygon.setOptions({ fillColor: '#3CAFAF' });
-
-          // 폴리곤의 중심 위치를 계산
-          const position = 0.0;
-
-          const content =
-            `<div class="area" style="color: #FFF; background-color: #3CAFAF; padding: 5px;">` +
-            area.name +
-            `</div>`;
-
-          // 오버레이 표시
-          showCustomOverlay(map, position, content);
         }
 
         window.kakao.maps.event.addListener(
