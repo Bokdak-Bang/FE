@@ -7,7 +7,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Input from 'components/common/Input';
 import CustomButton from 'components/common/Button';
 import { postAgentSignUp, postSignUp } from 'apis/SignUpApi';
-import { setEmitFlags } from 'typescript';
 
 const index = () => {
   const { state } = useLocation();

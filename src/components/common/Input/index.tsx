@@ -3,7 +3,6 @@ import React, {
   PropsWithChildren,
   forwardRef,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 import styles from './input.module.scss';
@@ -15,6 +14,7 @@ interface InputProps {
   setIsModifying?: (isModifying: boolean) => void;
   value?: string;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onChange?: (value: string) => void;
 }
 
 const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
@@ -26,6 +26,7 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
       setIsModifying,
       value,
       onKeyDown,
+      onChange,
     } = props;
 
     const [inputValue, setInputValue] = useState<string>(value || '');
@@ -52,6 +53,8 @@ const Input = forwardRef<HTMLInputElement, PropsWithChildren<InputProps>>(
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
       // input이 변경될 때마다 호출
       const value = e.target.value;
+      onChange && onChange(value);
+
       setInputValue(value);
     };
 

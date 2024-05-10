@@ -1,12 +1,29 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import styles from './MyPage.module.scss';
 import Input from 'components/common/Input';
 import CustomButton from 'components/common/Button';
 import { getLoginToken } from 'hooks/SignInHooks';
 import { useNavigate } from 'react-router-dom';
+import { useMemberStore } from 'utils/useMemberStore';
+import { fetchMyPage } from 'apis/MyPageApi';
 
 const index = () => {
   const navigator = useNavigate();
+  const getMember = useMemberStore((state) => state.getMember);
+  // const getAgent = useMemberStore((state) => state.getAgent);
+
+  // const setMember = useMemberStore((state) => state.setMember);
+  // const setAgent = useMemberStore((state) => state.setAgent);
+
+  const [userName, setUserName] = useState<string>(getMember().name);
+  const [email, setEmail] = useState<string>(getMember().email);
+  const [password, setPassword] = useState<string>(getMember().password);
+
+  const name_get = getMember().name;
+  const email_get = getMember().email;
+  const password_get = getMember().password;
 
   const imgRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
@@ -20,12 +37,28 @@ const index = () => {
 
   const handleSave = () => {
     const name = nameRef.current?.value;
-    const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const passwordCheck = passwordCheckRef.current?.value;
 
-    console.log('name: ', name, ', email: ', email, ', password: ', password);
+    if (password !== passwordCheck) {
+      alert('비밀번호를 확인해주세요!');
+    } else {
+      setUserName(name || '');
+      setPassword(password || '');
+      if (name && password) {
+        fetchMyPage(name, password!, password!).then((res) => {
+          if (res.isSuccess) {
+            alert('정보가 수정되었습니다.');
+            sessionStorage.setItem('name', name);
+          } else {
+            alert('정보 수정에 실패했습니다.');
+          }
+        });
+      } else {
+        alert('이름과 비밀번호를 입력해주세요.');
+      }
+    }
   };
 
   const handleChangeImg = (e: ChangeEvent<HTMLInputElement>) => {
@@ -75,28 +108,28 @@ const index = () => {
             isModifying={true}
             type="text"
             placeHolder="이름"
-            value="홍길동"
+            value={name_get}
             ref={nameRef}
           />
           <Input
             isModifying={true}
             type="email"
             placeHolder="이메일"
-            value="naver@naver"
+            value={email_get}
             ref={emailRef}
           />
           <Input
             isModifying={true}
             type="password"
             placeHolder="비밀번호"
-            value="12345678"
+            value={password_get}
             ref={passwordRef}
           />
           <Input
             isModifying={true}
             type="password"
             placeHolder="비밀번호 확인"
-            value="12345678"
+            value={password_get}
             ref={passwordCheckRef}
           />
         </div>

@@ -8,10 +8,12 @@ import GuestHeader from 'layouts/GuestHeader';
 import { useNavigate } from 'react-router-dom';
 import { postSignIn } from 'apis/SignInApi';
 import { useMemberStore } from 'utils/useMemberStore';
+import { getAgentMyPage } from 'apis/MyPageApi';
 
 const index = () => {
   const sessionStorage = window.sessionStorage;
   const setMember = useMemberStore((state) => state.setMember);
+  const setAgent = useMemberStore((state) => state.setAgent);
 
   const navigator = useNavigate();
 
@@ -28,13 +30,45 @@ const index = () => {
         if (res.isSuccess) {
           // 로그인 성공
           sessionStorage.setItem('token', res.data.accessToken);
-          setMember(res.data.name);
+          sessionStorage.setItem('type', res.data.grantType);
+          sessionStorage.setItem('name', res.data.username);
+          if (res.data.role === 'ROLE_USER') {
+            setMember(res.data.role, res.data.username, email, password);
+          } else if (res.data.role === 'ROLE_AGENT') {
+            getAgentMyPage().then((res) => {
+              if (res.isSuccess) {
+                setAgent(
+                  'ROLE_AGENT',
+                  res.data.username,
+                  email,
+                  password,
+                  res.data.area,
+                  res.data.businessName,
+                  res.data.phoneNumber,
+                  res.data.address,
+                );
+              }
+            });
+          }
           navigator('/');
         } else {
           // 로그인 실패
           alert('로그인 실패');
         }
       });
+      // getMyPage().then((res) => {
+      //   if (res.isSuccess) {
+      //     setAgent(
+      //       res.data.username,
+      //       email,
+      //       password,
+      //       res.data.area,
+      //       res.data.businessName,
+      //       res.data.phoneNumber,
+      //       res.data.address,
+      //     );
+      //   }
+      // });
     }
   };
 
