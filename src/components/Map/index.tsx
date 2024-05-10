@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import path from 'path';
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Map.module.css';
 
 declare global {
@@ -16,7 +16,7 @@ interface MapProps {
 const Map = ({ activeArea }: MapProps) => {
   useEffect(() => {
     let customOverlay: { setMap: (arg0: null) => void };
-
+    console.log('activeArea:', activeArea);
     // 맵을 초기화하는 함수
     const initializeMap = () => {
       const container = document.getElementById('map');
@@ -3439,7 +3439,7 @@ const Map = ({ activeArea }: MapProps) => {
           ],
         },
         {
-          name: '성동구',
+          name: '성북구',
           path: [
             new window.kakao.maps.LatLng(37.58409106657053, 127.0070697042726),
             new window.kakao.maps.LatLng(37.58429294422335, 127.00701045063862),
@@ -4342,17 +4342,31 @@ const Map = ({ activeArea }: MapProps) => {
           fillColor: '#fff',
           fillOpacity: 0.5,
         });
+        if (area.name === activeArea) {
+          polygon.setOptions({ fillColor: '#3CAFAF' });
+
+          // 폴리곤의 중심 위치를 계산
+          const position = 0.0;
+
+          const content =
+            `<div class="area" style="color: #FFF; background-color: #3CAFAF; padding: 5px;">` +
+            area.name +
+            `</div>`;
+
+          // 오버레이 표시
+          showCustomOverlay(map, position, content);
+        }
 
         window.kakao.maps.event.addListener(
           polygon,
           'mouseover',
           function (mouseEvent: { latLng: any }) {
-            polygon.setOptions({ fillColor: '#3CAFAF' });
+            polygon.setOptions({ fillColor: '#3CAFAF' }); // 색상 변경
             const content =
-              '<div class="area" className={styles.tooltip}>' +
+              '<div class="area" style="color: #FFF; background-color: #3CAFAF; padding: 5px;">' +
               area.name +
               '</div>';
-            showCustomOverlay(map, mouseEvent.latLng, content);
+            showCustomOverlay(map, mouseEvent.latLng, content); // 커스텀 오버레이 보여주기
           },
         );
 
@@ -4411,9 +4425,12 @@ const Map = ({ activeArea }: MapProps) => {
       document.head.appendChild(script);
       script.onload = () => window.window.kakao.maps.load(initializeMap);
     }
-  }, []);
+  }, [activeArea]);
 
   return <div id="map" style={{ width: '100%', height: '100%' }}></div>;
 };
 
 export default Map;
+function getPolygonCenter(polygon: any) {
+  throw new Error('Function not implemented.');
+}
