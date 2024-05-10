@@ -1,0 +1,44 @@
+@import '../../styles/style.scss';
+
+.title{
+    color:$gray80;
+    @include H1;
+}
+
+.wrapper{
+    width: 368px;
+    height: 373px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    border: 1px solid $gray30;
+    background: #fff;
+}   
+
+.btnWrapper{
+    display: flex;
+
+    justify-content: center;
+    gap:10px;
+}
+.area{
+    color: $gray80;
+    @include B2med;
+}
+.head{
+    display: flex;
+    align-items: center;
+    margin-top: 22px;
+    margin-left: 166px;
+    gap:124px;
+}
+
+.root{
+    margin-top: 49px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
