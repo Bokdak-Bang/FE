@@ -48,6 +48,7 @@ const Header = () => {
       }
     } catch (error) {
       console.error('Failed to fetch user areas:', error);
+      alert('동네저장을 불러오는데 실패했습니다. 재로그인 해주세요.');
     }
   };
 
@@ -72,7 +73,13 @@ const Header = () => {
       <div className={styles.container}>
         <div className={styles.left}>
           <GnbLogo
-            onClick={() => navigator('/')}
+            onClick={() => {
+              if (window.location.pathname === '/') {
+                window.location.reload();
+              } else {
+                navigator('/');
+              }
+            }}
             style={{ cursor: 'pointer' }}
           />
           <HeaderSearchBar onSave={handleSave} />

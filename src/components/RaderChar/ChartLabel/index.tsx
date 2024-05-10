@@ -26,7 +26,9 @@ const ChartLabel: React.FC<ChartLabelProps> = ({
       <div
         className={` ${!isSelected ? styles.container : styles.selectedContainer}`}
       >
-        <Icon className={styles.icon} />
+        <Icon
+          className={` ${!isSelected ? styles.icon : styles.selectedIcon}`}
+        />
         <div
           className={` ${!isSelected ? styles.score : styles.selectedScore}`}
         >

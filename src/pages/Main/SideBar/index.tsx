@@ -53,9 +53,13 @@ const SideBar = ({ onSelectArea }: SideBarProps) => {
           area={area}
           rank={rank}
           setAreaRank={setAreaRank}
+          setWidth={setWidth}
+          setShowComponent={setShowComponent}
         />
       )}
-      {showComponent === 'AgentConnetion' && <AgentConnetion />}
+      {showComponent === 'AgentConnetion' && (
+        <AgentConnetion setShowComponent={setShowComponent} />
+      )}
     </div>
   );
 };
