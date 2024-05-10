@@ -6,6 +6,8 @@ interface ChartLabelProps {
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
   score: number;
   style: React.CSSProperties;
+  onClick?: () => void;
+  selected: string;
 }
 
 const ChartLabel: React.FC<ChartLabelProps> = ({
@@ -13,13 +15,23 @@ const ChartLabel: React.FC<ChartLabelProps> = ({
   icon: Icon,
   score,
   style,
+  onClick,
+  selected,
 }) => {
+  const isSelected = label === selected;
+
   return (
-    <div style={style} className={styles.wrapper}>
+    <div style={style} onClick={onClick}>
       <div className={styles.label}>{label}</div>
-      <div className={styles.container}>
+      <div
+        className={` ${!isSelected ? styles.container : styles.selectedContainer}`}
+      >
         <Icon className={styles.icon} />
-        <div className={styles.score}>{score}점</div>
+        <div
+          className={` ${!isSelected ? styles.score : styles.selectedScore}`}
+        >
+          {score}점
+        </div>
       </div>
     </div>
   );

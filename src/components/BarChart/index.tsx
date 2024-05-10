@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import chartDataSets from 'models/chartDataSets.json';
 
 ChartJS.register(
   CategoryScale,
@@ -19,14 +20,32 @@ ChartJS.register(
   Legend,
 );
 
-const BarChart = () => {
-  const data = {
-    labels: ['양천구', '서초구', '종로구', '강서구', '서대문구', '강남구'],
+interface BarChartProps {
+  data: {
+    label: string;
+    value: number;
+  }[];
+  selectedSub: string;
+  selected: string;
+  area: string;
+}
+
+const BarChart: React.FC<BarChartProps> = ({
+  data,
+  selectedSub,
+  selected,
+  area,
+}) => {
+  const Bardata = {
+    labels: data.map((item) => item.label),
+
     datasets: [
       {
-        label: '미세먼지 농도',
-        data: [37, 28, 22, 23, 19, 12],
-        backgroundColor: 'rgba(157, 215, 215, 0.8)',
+        label: selectedSub,
+        data: data.map((item) => item.value),
+        backgroundColor: data.map((item) =>
+          item.label === area ? '#3CAFAF' : 'rgba(157, 215, 215, 0.8)',
+        ),
         borderColor: 'rgba(157, 215, 215, 1)',
         borderWidth: 0,
         barThickness: 20,
@@ -47,9 +66,6 @@ const BarChart = () => {
         grid: {
           display: true,
         },
-        ticks: {
-          stepSize: 10,
-        },
       },
     },
     plugins: {
@@ -65,7 +81,7 @@ const BarChart = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Bar data={data} options={options} />
+      <Bar data={Bardata} options={options} />
     </div>
   );
 };

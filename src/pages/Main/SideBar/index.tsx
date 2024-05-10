@@ -27,14 +27,33 @@ const SideBar = ({ onSelectArea }: SideBarProps) => {
     setShowComponent('Chart');
   };
 
+  const [area, setArea] = useState('강남구');
+  const [rank, setRank] = useState(1);
+
+  const setAreaRank = (area: string, rank: number) => {
+    setArea(area);
+    setRank(rank);
+  };
+
   return (
     <div className={styles.container} style={{ width: width }}>
       {showComponent === 'Rating' && <Rating onAnalyze={handleShowRanking} />}
       {showComponent === 'Ranking' && (
-        <Ranking expandSideBar={expandSideBar} onSelectArea={onSelectArea} />
+        <Ranking
+          expandSideBar={expandSideBar}
+          onSelectArea={onSelectArea}
+          area={area}
+          setAreaRank={setAreaRank}
+          rank={rank}
+        />
       )}
       {showComponent === 'Chart' && (
-        <Chart onClickAgent={handleShowAgentConnetion} />
+        <Chart
+          onClickAgent={handleShowAgentConnetion}
+          area={area}
+          rank={rank}
+          setAreaRank={setAreaRank}
+        />
       )}
       {showComponent === 'AgentConnetion' && <AgentConnetion />}
     </div>

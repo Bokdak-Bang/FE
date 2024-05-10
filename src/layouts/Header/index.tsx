@@ -11,12 +11,11 @@ import React, { useState } from 'react';
 import styles from './Header.module.scss';
 import HeaderSearchBar from 'components/SearchBar';
 import { useNavigate } from 'react-router-dom';
-import { useMemberStore } from 'utils/useMemberStore';
+import { getUserAreas } from 'apis/\bDataBoardsApi';
 
 const Header = () => {
   const navigator = useNavigate();
-  const getMember = useMemberStore((state) => state.getMember);
-  const userName = getMember();
+  const userName = sessionStorage.getItem('name');
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [typingValue, setTypingValue] = useState<string>('');
@@ -29,6 +28,21 @@ const Header = () => {
   const handleSave = (s: string) => {
     setTypingValue(s);
     console.log(s);
+  };
+
+  const handleLogout = () => {
+    sessionStorage.clear();
+    navigator('/');
+  };
+
+  const handleSaveArea = async () => {
+    try {
+      const userAreas = await getUserAreas();
+      console.log('User areas:', userAreas);
+      navigator('/save');
+    } catch (error) {
+      console.error('Failed to fetch user areas:', error);
+    }
   };
 
   return (
@@ -50,13 +64,15 @@ const Header = () => {
           </div>
           <div className={styles.menu}>
             <GnbSave className={styles.icon} />
-            <span className={styles.label} onClick={() => navigator('/save')}>
+            <span className={styles.label} onClick={handleSaveArea}>
               동네저장
             </span>
           </div>
           <div className={styles.menu} onClick={handleProfileOpen}>
             <GnbProfile className={styles.icon} />
-            <span className={styles.label}>홍길동 님</span>
+            <span className={styles.label}>
+              {userName ? userName + '님' : 'Guest'}
+            </span>
           </div>
         </div>
       </div>
@@ -64,7 +80,7 @@ const Header = () => {
         <div className={styles.dropDown}>
           <div className={styles.header}>
             <img src="images/profile-default.svg" className={styles.img} />{' '}
-            {userName ? { userName } + ' 님' : 'guest'}
+            {userName ? userName + '님' : 'Guest'}
           </div>
           <div className={styles.seperator} />
           <div className={styles.content} onClick={() => navigator('/mypage')}>
@@ -72,7 +88,7 @@ const Header = () => {
             마이페이지
           </div>
           <div className={styles.seperator} />
-          <div className={styles.content}>
+          <div className={styles.content} onClick={handleLogout}>
             <DropDown2 />
             로그아웃
           </div>

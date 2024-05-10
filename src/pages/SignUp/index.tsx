@@ -6,12 +6,21 @@ import { AddImg, Logo150 } from 'assets';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Input from 'components/common/Input';
 import CustomButton from 'components/common/Button';
-// import { postSignUp } from 'apis/SignUpApi';
+import { postAgentSignUp, postSignUp } from 'apis/SignUpApi';
 
 const index = () => {
   const { state } = useLocation();
   const { isUser } = state;
   const navigator = useNavigate();
+
+  const [name, setName] = useState<string>(''); // 사용자인지 공인중개사인지
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [region, setRegion] = useState<string>('');
+  const [estateName, setEstateName] = useState<string>('');
+  const [callNumber, setCallNumber] = useState<string>('');
+  const [address, setAddress] = useState<string>('');
+
   const [currentImg, setCurrentImg] = useState<string>();
 
   const [isSecondPage, setIsSecondPage] = useState<boolean>(false);
@@ -29,59 +38,57 @@ const index = () => {
   const addressRef = useRef<HTMLInputElement>(null);
   const imgRef = useRef<HTMLInputElement>(null);
 
+  const [isModifyingName, setIsModifyingName] = useState<boolean>(false);
+  const [isModifyingEmail, setIsModifyingEmail] = useState<boolean>(false);
+  const [isModifyingPassword, setIsModifyingPassword] =
+    useState<boolean>(false);
+  const [isModifyingPasswordCheck, setIsModifyingPasswordCheck] =
+    useState<boolean>(false);
+
+  const [isModifyingRegion, setIsModifyingRegion] = useState<boolean>(true);
+  const [isModifyingEstateName, setIsModifyingEstateName] =
+    useState<boolean>(true);
+  const [isModifyingCallNumber, setIsModifyingCallNumber] =
+    useState<boolean>(true);
+  const [isModifyingAddress, setIsModifyingAddress] = useState<boolean>(true);
+
   const handleMemberSignUp = () => {
-    // const name = nameRef.current?.value;
-    // const email = emailRef.current?.value;
-    // const password = passwordRef.current?.value;
-    // const passwordCheck = passwordCheckRef.current?.value;
-    // if (name && email && password && passwordCheck) {
-    //   postSignUp(email, name, password, passwordCheck).then((res) => {
-    //     if (res.isSuccess) {
-    //       navigator('/signin');
-    //     } else if (res.code === 'MEMBER_002') {
-    //       alert('동일한 이메일을 가지는 사용자가 존재합니다!');
-    //     } else {
-    //       alert('회원가입 실패');
-    //     }
-    //   });
-    // }
+    const name = nameRef.current?.value;
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+    const passwordCheck = passwordCheckRef.current?.value;
+    if (name && email && password && passwordCheck) {
+      postSignUp(email, name, password, passwordCheck).then((res) => {
+        if (res.isSuccess) {
+          navigator('/signin');
+        } else if (res.code === 'MEMBER_002') {
+          alert('동일한 이메일을 가지는 사용자가 존재합니다!');
+        } else {
+          alert('회원가입 실패');
+        }
+      });
+    }
   };
 
-  // useEffect(() => {}, [isSecondPage, isThirdPage]);
-
   const handleAgentSignUp = () => {
-    // const name = nameRef.current?.value;
-    // const email = emailRef.current?.value;
-    // const password = passwordRef.current?.value;
-    // const passwordCheck = passwordCheckRef.current?.value;
-    // const region = regionRef.current?.value;
-    // const estateName = estateNameRef.current?.value;
-    // const callNumber = callNumberRef.current?.value;
-    // const address = addressRef.current?.value;
-    // if (
-    //   name &&
-    //   email &&
-    //   password &&
-    //   passwordCheck &&
-    //   region &&
-    //   estateName &&
-    //   callNumber &&
-    //   address
-    // ) {
-    //   if (password !== passwordCheck) {
-    //     alert('비밀번호를 다시 확인해주세요!');
-    //   } else {
-    //     postSignUp(email, name, password, passwordCheck).then((res) => {
-    //       if (res.isSuccess) {
-    //         navigator('/signin');
-    //       } else if (res.code === 'MEMBER_002') {
-    //         alert('동일한 이메일을 가지는 사용자가 존재합니다!');
-    //       } else {
-    //         alert('회원가입 실패');
-    //       }
-    //     });
-    //   }
-    // }
+    postAgentSignUp(
+      email,
+      name,
+      password,
+      password,
+      region,
+      estateName,
+      callNumber,
+      address,
+    ).then((res) => {
+      if (res.isSuccess) {
+        navigator('/signin');
+      } else if (res.code === 'MEMBER_002') {
+        alert('동일한 이메일을 가지는 사용자가 존재합니다!');
+      } else {
+        alert('회원가입 실패');
+      }
+    });
   };
 
   const handleChangeImg = (e: ChangeEvent<HTMLInputElement>) => {
@@ -121,13 +128,33 @@ const index = () => {
         <div className={styles.inputContainer}>
           {!isSecondPage && !isThirdPage ? (
             <>
-              <Input type="text" placeHolder="이름" ref={nameRef} />
-              <Input type="email" placeHolder="이메일" ref={emailRef} />
-              <Input type="password" placeHolder="비밀번호" ref={passwordRef} />
+              <Input
+                type="text"
+                placeHolder="이름"
+                ref={nameRef}
+                isModifying={isModifyingName}
+                setIsModifying={setIsModifyingName}
+              />
+              <Input
+                type="email"
+                placeHolder="이메일"
+                ref={emailRef}
+                isModifying={isModifyingEmail}
+                setIsModifying={setIsModifyingEmail}
+              />
+              <Input
+                type="password"
+                placeHolder="비밀번호"
+                ref={passwordRef}
+                isModifying={isModifyingPassword}
+                setIsModifying={setIsModifyingPassword}
+              />
               <Input
                 type="password"
                 placeHolder="비밀번호 확인"
                 ref={passwordCheckRef}
+                isModifying={isModifyingPasswordCheck}
+                setIsModifying={setIsModifyingPasswordCheck}
               />
             </>
           ) : isSecondPage ? (
@@ -136,11 +163,30 @@ const index = () => {
                 type="text"
                 placeHolder="담당 행정구"
                 ref={regionRef}
-                value=""
+                isModifying={isModifyingRegion}
+                setIsModifying={setIsModifyingRegion}
               />
-              <Input type="text" placeHolder="상호명" ref={estateNameRef} />
-              <Input type="tel" placeHolder="전화번호" ref={callNumberRef} />
-              <Input type="text" placeHolder="주소" ref={addressRef} />
+              <Input
+                type="text"
+                placeHolder="상호명"
+                ref={estateNameRef}
+                isModifying={isModifyingEstateName}
+                setIsModifying={setIsModifyingEstateName}
+              />
+              <Input
+                type="tel"
+                placeHolder="전화번호"
+                ref={callNumberRef}
+                isModifying={isModifyingCallNumber}
+                setIsModifying={setIsModifyingCallNumber}
+              />
+              <Input
+                type="text"
+                placeHolder="주소"
+                ref={addressRef}
+                isModifying={isModifyingAddress}
+                setIsModifying={setIsModifyingAddress}
+              />
             </>
           ) : (
             <div className={styles.imgContainer}>
@@ -193,22 +239,40 @@ const index = () => {
               isUser
                 ? handleMemberSignUp // 사용자
                 : !isSecondPage && !isThirdPage
-                  ? () => setIsSecondPage(true) // 공인중개사 step 1
+                  ? () => {
+                      if (
+                        passwordRef.current?.value !==
+                        passwordCheckRef.current?.value
+                      ) {
+                        alert('비밀번호를 다시 확인해주세요!');
+                      } else if (
+                        nameRef.current?.value &&
+                        emailRef.current?.value &&
+                        passwordRef.current?.value &&
+                        passwordCheckRef.current?.value
+                      ) {
+                        setName(nameRef.current?.value);
+                        setEmail(emailRef.current?.value);
+                        setPassword(passwordRef.current?.value);
+                        setIsSecondPage(true);
+                      }
+                    } // 공인중개사 step 1
                   : !isThirdPage
                     ? () => {
                         // 공인중개사 step 2
-                        setIsThirdPage(true);
-                        setIsSecondPage(false);
                         if (
-                          passwordRef.current?.value !==
-                          passwordCheckRef.current?.value
+                          regionRef.current?.value &&
+                          estateNameRef.current?.value &&
+                          callNumberRef.current?.value &&
+                          addressRef.current?.value
                         ) {
-                          alert('비밀번호를 다시 확인해주세요!');
+                          setRegion(regionRef.current?.value);
+                          setEstateName(estateNameRef.current?.value);
+                          setCallNumber(callNumberRef.current?.value);
+                          setAddress(addressRef.current?.value);
+                          setIsThirdPage(true);
+                          setIsSecondPage(false);
                         }
-                        regionRef.current!.value = '';
-                        callNumberRef.current!.value = '';
-                        addressRef.current!.value = '';
-                        estateNameRef.current!.value = '';
                       }
                     : handleAgentSignUp // 공인중개사 step 3
             }

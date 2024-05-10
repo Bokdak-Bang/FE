@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Rating.module.scss';
 import Slider from 'components/Slider';
 import Button from 'components/common/Button';
+import { postDataArea } from 'apis/DataAreaApi';
+import useStore from 'context/useStore';
 import {
   Nature,
   House,
@@ -13,21 +15,25 @@ import {
   Traffic,
   Reset,
 } from 'assets';
+import { on } from 'events';
+import useAreaStore from 'context/useDetailStroe';
 
 interface RatingProps {
   onAnalyze: () => void;
 }
 
 const Rating = ({ onAnalyze }: RatingProps) => {
+  const { areaData } = useAreaStore();
+  const areaScores = useStore((state) => state.areaScores);
   const navigate = useNavigate();
   const [values, setValues] = useState({
-    natureValue: 2.5,
-    houseValue: 2.5,
-    populationValue: 2.5,
-    safetyValue: 2.5,
-    trafficValue: 2.5,
-    educationValue: 2.5,
-    welfareValue: 2.5,
+    natureScore: 3,
+    residenceScore: 3,
+    populationScore: 3,
+    securityScore: 3,
+    lifeScore: 3,
+    educationScore: 3,
+    welfareScore: 3,
   });
 
   // 각 슬라이더 값을 설정하는 함수
@@ -38,25 +44,58 @@ const Rating = ({ onAnalyze }: RatingProps) => {
   // 모든 슬라이더를 초기화하는 함수
   const handleReset = () => {
     setValues({
-      natureValue: 2.5,
-      houseValue: 2.5,
-      populationValue: 2.5,
-      safetyValue: 2.5,
-      trafficValue: 2.5,
-      educationValue: 2.5,
-      welfareValue: 2.5,
+      natureScore: 3,
+      residenceScore: 3,
+      populationScore: 3,
+      securityScore: 3,
+      lifeScore: 3,
+      educationScore: 3,
+      welfareScore: 3,
     });
+  };
+
+  const handleAnalyzeClick = async () => {
+    try {
+      const {
+        natureScore,
+        residenceScore,
+        populationScore,
+        securityScore,
+        lifeScore,
+        educationScore,
+        welfareScore,
+      } = values;
+
+      const response = await postDataArea(
+        natureScore,
+        residenceScore,
+        populationScore,
+        securityScore,
+        lifeScore,
+        educationScore,
+        welfareScore,
+      );
+
+      if (response.code === '200' && response.isSuccess) {
+        // 데이터를 올바른 타입으로 변환하여 스토어에 저장
+        useStore.getState().setAreaScores(response.data.areaScoreResponseList);
+      }
+      console.log('Analysis results:', response);
+      onAnalyze(); // 분석 완료 후 onAnalyze 콜백 호출
+    } catch (error) {
+      console.error('Failed to post data:', error);
+    }
   };
 
   // 슬라이더 구성 요소 정보
   const sliderComponents = [
-    { key: 'natureValue', title: '자연', Icon: Nature },
-    { key: 'houseValue', title: '주택', Icon: House },
-    { key: 'populationValue', title: '지역인구', Icon: Population },
-    { key: 'safetyValue', title: '안전', Icon: Safety },
-    { key: 'trafficValue', title: '생활편의교통', Icon: Traffic },
-    { key: 'educationValue', title: '교육', Icon: Education },
-    { key: 'welfareValue', title: '복지문화', Icon: Welfare },
+    { key: 'natureScore', title: '자연', Icon: Nature },
+    { key: 'residenceScore', title: '주택', Icon: House },
+    { key: 'populationScore', title: '지역인구', Icon: Population },
+    { key: 'securityScore', title: '안전', Icon: Safety },
+    { key: 'lifeScore', title: '생활편의교통', Icon: Traffic },
+    { key: 'educationScore', title: '교육', Icon: Education },
+    { key: 'welfareScore', title: '복지문화', Icon: Welfare },
   ];
 
   return (
@@ -81,7 +120,7 @@ const Rating = ({ onAnalyze }: RatingProps) => {
           buttonType={'fill'}
           fontType={'H2'}
           text={'분석'}
-          onClick={onAnalyze}
+          onClick={handleAnalyzeClick}
         />
       </div>
     </div>

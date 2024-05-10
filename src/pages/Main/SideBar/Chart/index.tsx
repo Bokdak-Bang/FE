@@ -4,20 +4,69 @@ import RaderChart from 'components/RaderChar';
 import ChartDetail from 'components/ChartDetail';
 import Button from 'components/common/Button';
 import { LeftArrow, Share, Save } from 'assets';
+import { saveUserArea } from 'apis/\bDataBoardsApi';
 
 interface AgentConnetionProps {
   onClickAgent: () => void;
+  area: string;
+  rank: number;
+  setAreaRank: (area: string, rank: number) => void;
 }
 
-const Chart = ({ onClickAgent }: AgentConnetionProps) => {
-  const [selectedLocation, setSelectedLocation] = useState<string>('강남구');
-  const [selected, setSelected] = useState<string>('nature');
+const Chart = ({
+  onClickAgent,
+  area,
+  rank,
+  setAreaRank,
+}: AgentConnetionProps) => {
+  const regionIds: { [key: string]: number } = {
+    강남구: 1,
+    강동구: 2,
+    강북구: 3,
+    강서구: 4,
+    관악구: 5,
+    광진구: 6,
+    구로구: 7,
+    금천구: 8,
+    노원구: 9,
+    도봉구: 10,
+    동대문구: 11,
+    동작구: 12,
+    마포구: 13,
+    서대문구: 14,
+    서초구: 15,
+    성동구: 16,
+    성북구: 17,
+    송파구: 18,
+    양천구: 19,
+    영등포구: 20,
+    용산구: 21,
+    은평구: 22,
+    종로구: 23,
+    중구: 24,
+    중랑구: 25,
+  };
+  // 선택된 지표가 뭐니?
+  const [selected, setSelected] = useState<string>('자연');
 
   const handleShareBtn = () => {
-    console.log('share');
+    alert('개발중입니다.');
   };
-  const handleSaveBtn = () => {
-    console.log('save');
+  const handleSaveBtn = async () => {
+    const areaId = regionIds[area]; // 지역명으로부터 ID를 찾습니다
+    if (!areaId) {
+      console.error('Invalid area name');
+      return;
+    }
+
+    try {
+      const response = await saveUserArea(areaId.toString()); // API 호출
+      console.log('Save successful:', response);
+      alert('저장되었습니다!');
+    } catch (error) {
+      console.error('Save failed:', error);
+      alert('저장에 실패했습니다.');
+    }
   };
   return (
     <div>
@@ -28,16 +77,22 @@ const Chart = ({ onClickAgent }: AgentConnetionProps) => {
       <div className={styles.mainTitle}>
         <div>
           홍길동 님에게 추천하는 동네{' '}
-          <span className={styles.highlight}>1위 강남구</span>
+          <span className={styles.highlight}>
+            {rank}위 {area}
+          </span>
         </div>
       </div>
 
       {/* 차트 모음 */}
       <div className={styles.chartsWrapper}>
         <div className={styles.raderChartWrapper}>
-          <RaderChart />
+          <RaderChart setSelected={setSelected} selected={selected} />
         </div>
-        <ChartDetail />
+        <ChartDetail
+          setSelected={setSelected}
+          selected={selected}
+          area={area}
+        />
       </div>
 
       {/* 맨아래 공유/저장/공인중개사 연결 */}
