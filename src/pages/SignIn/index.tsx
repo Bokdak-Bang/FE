@@ -32,6 +32,7 @@ const index = () => {
           sessionStorage.setItem('token', res.data.accessToken);
           sessionStorage.setItem('type', res.data.grantType);
           sessionStorage.setItem('name', res.data.username);
+          sessionStorage.setItem('userId', res.data.id);
           if (res.data.role === 'ROLE_USER') {
             setMember(res.data.role, res.data.username, email, password);
             sessionStorage.setItem('isUser', 'true');

@@ -41,7 +41,8 @@ export const saveUserArea = async (areaId: string) => {
 
 export const getUserAreas = async () => {
   const token = sessionStorage.getItem('token');
-  const res = await fetch(`${HTTP_URL}/data/boards`, {
+  const userId = sessionStorage.getItem('userId');
+  const res = await fetch(`${HTTP_URL}/data/boards/${userId}`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
