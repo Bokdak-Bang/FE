@@ -70,14 +70,19 @@ const Chart = ({
       return;
     }
 
+    if (!userName) {
+      alert('로그인이 필요합니다.');
+      navigator('/signin');
+      return;
+    }
+
     try {
       const response = await saveUserArea(areaId.toString()); // API 호출
       console.log('Save successful:', response);
       alert('저장되었습니다!');
     } catch (error) {
       console.error('Save failed:', error);
-      alert('저장에 실패했습니다.');
-      navigator('/signin');
+      alert('이미 저장된 지역입니다.');
     }
   };
   return (
