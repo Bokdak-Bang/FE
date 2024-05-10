@@ -4363,7 +4363,7 @@ const Map = ({ activeArea }: MapProps) => {
           function (mouseEvent: { latLng: any }) {
             polygon.setOptions({ fillColor: '#3CAFAF' }); // 색상 변경
             const content =
-              '<div class="area" style="color: #FFF; background-color: #3CAFAF; padding: 5px;">' +
+              '<div class="area" style="font-family: Pretendard GOV; size: 9px; color: #FFF; background-color: #3CAFAF; padding: 5px 13px; border-radius: 10px;">' +
               area.name +
               '</div>';
             showCustomOverlay(map, mouseEvent.latLng, content); // 커스텀 오버레이 보여주기
