@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import styles from './AgentConnetion.module.scss';
 import { LeftArrow } from 'assets';

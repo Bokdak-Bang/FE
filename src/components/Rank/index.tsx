@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import styles from './Rank.module.scss';
 import { RightArrow } from 'assets';
@@ -19,7 +20,7 @@ const Rank = ({
   onSelectArea,
   setAreaRank,
 }: RankProps) => {
-  const { areaData } = useAreaStore();
+  // const { areaData } = useAreaStore();
   const regionIds: { [key: string]: number } = {
     강남구: 1,
     강동구: 2,
