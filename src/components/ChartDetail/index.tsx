@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useState, useEffect } from 'react';
 import { RightArrowFill, LeftArrowFill } from 'assets';
 import styles from './ChartDetail.module.scss';
@@ -109,13 +110,6 @@ const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
   // 현재 선택된 카테고리의 데이터를 추출
   // const categoryData = data[selected];
 
-  // useEffect(() => {
-  //   if (data[selected]) {
-  //     const keys = Object.keys(data[selected]);
-  //     setSelectedSub(keys[0]);
-  //   }
-  // }, [data, selected]);
-
   // subItems 데이터를 BarChart에 전달
   const subItems = data[selected]
     ? Object.keys(data[selected]).map((key) => ({
@@ -133,6 +127,28 @@ const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
         .find((detail) => detail.detailCategory === selectedDetailCategoryMain)
         ?.score
     : null;
+
+  const formatNumber = (num: number) => {
+    if (num) {
+      // 소수점 아래 둘째 자리까지만 표시하도록 처리
+      num = parseFloat(num.toFixed(2));
+
+      // 소수점 아래 자리가 없는 경우 정수로 표시
+      if (num % 1 === 0) {
+        return num.toString();
+      }
+      // 소수점 아래 한 자리수인 경우 소수점 아래 한 자리까지만 표시
+      else if (Math.floor(num * 10) % 10 === 0) {
+        return num.toFixed(1).replace(/\.0$/, '');
+      }
+      // 소수점 아래 둘째 자리 이상인 경우 소수점 아래 둘째 자리까지만 표시
+      else {
+        return num.toFixed(2).replace(/\.?0+$/, '');
+      }
+    } else {
+      return '0';
+    }
+  };
 
   const barData =
     subItems.find((item) => item.label === selectedSub)?.data || [];
@@ -184,9 +200,7 @@ const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
           <div className={styles.title}>서울특별시 평균 {selectedSub}</div>
           <div className={styles.valueContainer}>
             {' '}
-            <div className={styles.leftInfo}>
-              {Number(meanValue).toFixed(2)}
-            </div>
+            <div className={styles.leftInfo}>{formatNumber(meanValue!)}</div>
           </div>
         </div>
         <div
@@ -197,7 +211,7 @@ const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
           }}
         >
           <div className={styles.title}>{area}</div>
-          <div className={styles.rightInfo}>{Number(areaScore).toFixed(2)}</div>
+          <div className={styles.rightInfo}>{formatNumber(areaScore!)}</div>
         </div>
       </div>
       {/* BarChart에 데이터 전달 */}

@@ -39,15 +39,32 @@ const Header = () => {
   };
 
   const handleSaveArea = async () => {
-    try {
-      const response = await getUserAreas();
-      if (response.code === '200' && response.isSuccess) {
-        navigator('/save', { state: { userAreas: response.data } });
-      } else {
-        console.error('Error fetching areas:', response.message);
+    if (userName) {
+      try {
+        const response = await getUserAreas();
+        if (response.code === '200' && response.isSuccess) {
+          navigator('/save', { state: { userAreas: response.data } });
+        } else {
+          console.error('Error fetching areas:', response.message);
+        }
+      } catch (error) {
+        console.error('Failed to fetch user areas:', error);
+        alert('동네저장을 불러오는데 실패했습니다. 재로그인 해주세요.');
       }
-    } catch (error) {
-      console.error('Failed to fetch user areas:', error);
+    } else {
+      alert('로그인이 필요한 서비스입니다.');
+      navigator('/signin');
+    }
+  };
+
+  const handleChat = () => {
+    if (isUser !== 'false') {
+      navigator('/chat');
+    } else if (isUser === 'false') {
+      // navigator()
+    } else {
+      alert('로그인이 필요한 서비스입니다.');
+      navigator('/signin');
     }
   };
 
@@ -72,7 +89,13 @@ const Header = () => {
       <div className={styles.container}>
         <div className={styles.left}>
           <GnbLogo
-            onClick={() => navigator('/')}
+            onClick={() => {
+              if (window.location.pathname === '/') {
+                window.location.reload();
+              } else {
+                navigator('/');
+              }
+            }}
             style={{ cursor: 'pointer' }}
           />
           <HeaderSearchBar onSave={handleSave} />
@@ -80,18 +103,11 @@ const Header = () => {
         <div className={styles.right}>
           <div className={styles.menu}>
             <GnbChat className={styles.icon} />
-            <span
-              className={styles.label}
-              onClick={() => {
-                if (sessionStorage.getItem('isUser') === 'true') {
-                  navigator('/chat');
-                }
-              }}
-            >
+            <span className={styles.label} onClick={handleChat}>
               채팅상담
             </span>
           </div>
-          {isUser ? (
+          {isUser !== 'false' ? (
             <div className={styles.menu}>
               <GnbSave className={styles.icon} />
               <span className={styles.label} onClick={handleSaveArea}>

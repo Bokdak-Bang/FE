@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import styles from './AgentConnetion.module.scss';
 import { LeftArrow } from 'assets';
@@ -11,14 +12,22 @@ interface AgentData {
   location: string;
   call: string;
 }
+interface AgentConnetionProps {
+  setShowComponent: (component: string) => void;
+}
 
 const agents: AgentData[] = (agentData as any).agents;
 
-const AgentConnection: React.FC = () => {
+const AgentConnection: React.FC<AgentConnetionProps> = ({
+  setShowComponent,
+}) => {
+  const handleBackBtn = () => {
+    setShowComponent('Chart');
+  };
   return (
     <div>
       <div className={styles.header}>
-        <LeftArrow />
+        <LeftArrow onClick={handleBackBtn} style={{ cursor: 'pointer' }} />
         <div>내가 찾던 그 동네_동네분석</div>
       </div>
 

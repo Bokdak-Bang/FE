@@ -46,6 +46,11 @@
     flex-shrink: 0;
     color: $gray70;
 }
+.selectedIcon{
+    width: 26.659px;
+    height: 23.698px;
+   
+}
 
 .selectedScore{
     @include C1;

@@ -17,6 +17,9 @@ const Save = () => {
       navigator('/signin');
     }
   }, [navigator]);
+  const handleSearch = () => {
+    navigator('/');
+  };
 
   return (
     <div className={styles.root}>
@@ -60,6 +63,7 @@ const Save = () => {
                   buttonType={'fill'}
                   fontType={'B1'}
                   text={'둘러보기'}
+                  onClick={handleSearch}
                 />
               </div>
             </div>

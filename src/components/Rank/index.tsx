@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import styles from './Rank.module.scss';
 import { RightArrow } from 'assets';
@@ -19,7 +20,7 @@ const Rank = ({
   onSelectArea,
   setAreaRank,
 }: RankProps) => {
-  const { areaData } = useAreaStore();
+  // const { areaData } = useAreaStore();
   const regionIds: { [key: string]: number } = {
     강남구: 1,
     강동구: 2,
@@ -127,10 +128,13 @@ const Rank = ({
       <div className={`${styles.number} ${rank <= 3 ? styles.topNumber : ''}`}>
         {rank}
       </div>
-      <div className={styles.town}>{location}</div>
-      <div className={styles.wrapper} onClick={expandSideBar}>
-        <div className={styles.next}>동네 보러가기</div>
-        <RightArrow />
+      <div className={styles.locationWrapper}>
+        <div className={styles.area}>{location}</div>
+
+        <div className={styles.wrapper} onClick={expandSideBar}>
+          <div className={styles.next}>동네 보러가기</div>
+          <RightArrow />
+        </div>
       </div>
     </div>
   );

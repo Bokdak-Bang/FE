@@ -10,7 +10,9 @@ interface SliderProps {
 
 const Slider = ({ value, title, ReactComponent, onChange }: SliderProps) => {
   const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(Number(event.target.value));
+    const newValue = Number(event.target.value);
+    onChange(newValue);
+    event.target.style.setProperty('--slider-value', `${(newValue - 1) * 25}%`);
   };
 
   return (
@@ -28,13 +30,10 @@ const Slider = ({ value, title, ReactComponent, onChange }: SliderProps) => {
         className={styles.slider}
       />
 
-      {/* 아래 눈금들 */}
       <div className={styles.barWrapper}>
-        <div className={styles.bar}></div>
-        <div className={styles.bar}></div>
-        <div className={styles.bar}></div>
-        <div className={styles.bar}></div>
-        <div className={styles.bar}></div>
+        {[...Array(5)].map((_, index) => (
+          <div key={index} className={styles.bar}></div>
+        ))}
       </div>
     </div>
   );
