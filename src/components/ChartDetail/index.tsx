@@ -24,7 +24,6 @@ const data: ChartData = chartData;
 
 const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
   const { areaData } = useAreaStore();
-  console.log('areaData:', areaData);
   const [selectedSub, setSelectedSub] = useState<string>('');
   const categories = [
     '자연',
@@ -108,14 +107,14 @@ const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
   };
 
   // 현재 선택된 카테고리의 데이터를 추출
-  const categoryData = data[selected];
+  // const categoryData = data[selected];
 
-  useEffect(() => {
-    if (data[selected]) {
-      const keys = Object.keys(data[selected]);
-      setSelectedSub(keys[0]);
-    }
-  }, [data, selected]);
+  // useEffect(() => {
+  //   if (data[selected]) {
+  //     const keys = Object.keys(data[selected]);
+  //     setSelectedSub(keys[0]);
+  //   }
+  // }, [data, selected]);
 
   // subItems 데이터를 BarChart에 전달
   const subItems = data[selected]
@@ -141,7 +140,9 @@ const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
   useEffect(() => {
     if (selected && data[selected]) {
       const subCategories = Object.keys(data[selected]);
-      if (subCategories.length > 0) {
+      if (subCategories.length > 0 && selected === '안전') {
+        setSelectedSub(subCategories[2]);
+      } else if (subCategories.length > 0 && selected !== '안전') {
         setSelectedSub(subCategories[0]);
       }
     }
