@@ -29,6 +29,7 @@ const Chart = ({
     setWidth('394px');
     setShowComponent('Ranking');
   };
+  const userName = sessionStorage.getItem('name');
   const regionIds: { [key: string]: number } = {
     강남구: 1,
     강동구: 2,
@@ -82,12 +83,12 @@ const Chart = ({
   return (
     <div>
       <div className={styles.header}>
-        <LeftArrow onClick={handlBackBtn} />
+        <LeftArrow onClick={handlBackBtn} style={{ cursor: 'pointer' }} />
         <div>내가 찾던 그 동네_동네분석</div>
       </div>
       <div className={styles.mainTitle}>
         <div>
-          홍길동 님에게 추천하는 동네{' '}
+          {userName} 님에게 추천하는 동네{' '}
           <span className={styles.highlight}>
             {rank}위 {area}
           </span>

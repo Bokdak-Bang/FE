@@ -26,7 +26,7 @@ const AgentConnection: React.FC<AgentConnetionProps> = ({
   return (
     <div>
       <div className={styles.header}>
-        <LeftArrow onClick={handleBackBtn} />
+        <LeftArrow onClick={handleBackBtn} style={{ cursor: 'pointer' }} />
         <div>내가 찾던 그 동네_동네분석</div>
       </div>
 
