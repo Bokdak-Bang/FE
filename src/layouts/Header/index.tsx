@@ -16,6 +16,8 @@ import { getUserAreas } from 'apis/\bDataBoardsApi';
 const Header = () => {
   const navigator = useNavigate();
   const userName = sessionStorage.getItem('name');
+  const isUser = sessionStorage.getItem('isUser');
+
   const dropDownRef = useRef(null);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -75,16 +77,27 @@ const Header = () => {
         <div className={styles.right}>
           <div className={styles.menu}>
             <GnbChat className={styles.icon} />
-            <span className={styles.label} onClick={() => navigator('/chat')}>
+            <span
+              className={styles.label}
+              onClick={() => {
+                if (sessionStorage.getItem('isUser') === 'true') {
+                  navigator('/chat');
+                }
+              }}
+            >
               채팅상담
             </span>
           </div>
-          <div className={styles.menu}>
-            <GnbSave className={styles.icon} />
-            <span className={styles.label} onClick={handleSaveArea}>
-              동네저장
-            </span>
-          </div>
+          {isUser ? (
+            <div className={styles.menu}>
+              <GnbSave className={styles.icon} />
+              <span className={styles.label} onClick={handleSaveArea}>
+                동네저장
+              </span>
+            </div>
+          ) : (
+            ''
+          )}
           <div className={styles.menu} onClick={handleProfileOpen}>
             <GnbProfile className={styles.icon} />
             <span className={styles.label}>
