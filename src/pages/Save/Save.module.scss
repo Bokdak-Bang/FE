@@ -1,8 +1,14 @@
 @import '../../styles/style.scss';
-
+.root{
+    margin: 49px 148px 0 148px;
+    display: flex;
+    flex-direction: column;
+}
 .title{
     color:$gray80;
     @include H1;
+    margin-bottom: 40px;
+
 }
 
 .wrapper{
@@ -16,9 +22,10 @@
 
 .btnWrapper{
     display: flex;
-
     justify-content: center;
-    gap:10px;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
 }
 .area{
     color: $gray80;
@@ -32,13 +39,21 @@
     gap:124px;
 }
 
-.root{
-    margin-top: 49px;
-    display: flex;
-    flex-direction: column;
-}
+
 
 .container{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 18px;
+
+}
+.charWapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px
+    ;width: 150px;
+    height: 150px;
+
 }

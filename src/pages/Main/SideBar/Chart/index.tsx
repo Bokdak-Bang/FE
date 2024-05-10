@@ -5,6 +5,7 @@ import ChartDetail from 'components/ChartDetail';
 import Button from 'components/common/Button';
 import { LeftArrow, Share, Save } from 'assets';
 import { saveUserArea } from 'apis/\bDataBoardsApi';
+import { useNavigate } from 'react-router-dom';
 
 interface AgentConnetionProps {
   onClickAgent: () => void;
@@ -19,6 +20,7 @@ const Chart = ({
   rank,
   setAreaRank,
 }: AgentConnetionProps) => {
+  const navigator = useNavigate();
   const regionIds: { [key: string]: number } = {
     강남구: 1,
     강동구: 2,
@@ -66,6 +68,7 @@ const Chart = ({
     } catch (error) {
       console.error('Save failed:', error);
       alert('저장에 실패했습니다.');
+      navigator('/signin');
     }
   };
   return (

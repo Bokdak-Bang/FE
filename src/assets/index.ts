@@ -28,3 +28,4 @@ export { ReactComponent as Call } from './icons/call.svg';
 export { ReactComponent as 동네전문가 } from './icons/동네전문가.svg';
 export { ReactComponent as AddImg } from './icons/addAgentImg.svg';
 export { ReactComponent as SaveLo } from './icons/save-lo.svg';
+export { ReactComponent as ChatEx } from './icons/chat-ex.svg';

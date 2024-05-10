@@ -1,6 +1,7 @@
 import { Location, Call } from 'assets';
 import Button from 'components/common/Button';
 import styles from './Agent.module.scss';
+import { useNavigate } from 'react-router-dom';
 // import { 동네전문가 } from 'assets';
 
 interface AgentProps {
@@ -10,6 +11,8 @@ interface AgentProps {
   call: string;
 }
 const Agent = ({ img, name, location, call }: AgentProps) => {
+  const navigator = useNavigate();
+
   return (
     <div className={styles.agent}>
       <img src={img} alt="agent" className={styles.img} />
@@ -32,6 +35,14 @@ const Agent = ({ img, name, location, call }: AgentProps) => {
             buttonType="fill"
             fontType="C1"
             text="동네 묻기"
+            onClick={() => {
+              if (sessionStorage.getItem('token')) {
+                alert('서비스 준비 중입니다');
+                navigator('/chat');
+              } else {
+                navigator('/signin');
+              }
+            }}
           />
         </div>
       </div>
