@@ -24,6 +24,7 @@ const data: ChartData = chartData;
 
 const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
   const { areaData } = useAreaStore();
+  console.log('areaData:', areaData);
   const [selectedSub, setSelectedSub] = useState<string>('');
   const categories = [
     '자연',
@@ -109,6 +110,13 @@ const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
   // 현재 선택된 카테고리의 데이터를 추출
   const categoryData = data[selected];
 
+  useEffect(() => {
+    if (data[selected]) {
+      const keys = Object.keys(data[selected]);
+      setSelectedSub(keys[0]);
+    }
+  }, [data, selected]);
+
   // subItems 데이터를 BarChart에 전달
   const subItems = data[selected]
     ? Object.keys(data[selected]).map((key) => ({
@@ -133,9 +141,7 @@ const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
   useEffect(() => {
     if (selected && data[selected]) {
       const subCategories = Object.keys(data[selected]);
-      if (subCategories.length > 0 && selected === '안전') {
-        setSelectedSub(subCategories[2]);
-      } else if (subCategories.length > 0 && selected !== '안전') {
+      if (subCategories.length > 0) {
         setSelectedSub(subCategories[0]);
       }
     }
@@ -177,7 +183,9 @@ const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
           <div className={styles.title}>서울특별시 평균 {selectedSub}</div>
           <div className={styles.valueContainer}>
             {' '}
-            <div className={styles.leftInfo}>{meanValue}</div>
+            <div className={styles.leftInfo}>
+              {Number(meanValue).toFixed(2)}
+            </div>
           </div>
         </div>
         <div
@@ -188,7 +196,7 @@ const ChartDetail = ({ setSelected, selected, area }: ChartDetailProps) => {
           }}
         >
           <div className={styles.title}>{area}</div>
-          <div className={styles.rightInfo}>{areaScore ?? 'N/A'}</div>
+          <div className={styles.rightInfo}>{Number(areaScore).toFixed(2)}</div>
         </div>
       </div>
       {/* BarChart에 데이터 전달 */}
