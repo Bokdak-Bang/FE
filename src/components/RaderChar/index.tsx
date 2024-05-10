@@ -21,6 +21,7 @@ import {
   Education,
   Welfare,
 } from 'assets';
+import useAreaStore from 'context/useDetailStroe';
 
 ChartJS.register(
   RadialLinearScale,
@@ -47,6 +48,39 @@ interface RadarChartProps {
 const RadarChart = ({ setSelected, selected }: RadarChartProps) => {
   const chartRef = useRef<Chart<'radar', number[], string> | null>(null);
   const [labelPositions, setLabelPositions] = useState<LabelPosition[]>([]);
+  const { areaData } = useAreaStore();
+
+  const scores = areaData
+    ? areaData.areaBoardScoreResponse.map((score) => score.score)
+    : [0, 0, 0, 0, 0, 0, 0];
+  const dataOrder = [
+    '자연',
+    '주택',
+    '지역인구',
+    '안전',
+    '생활편의교통',
+    '교육',
+    '복지문화',
+  ];
+
+  const categoryMap: { [key: string]: string } = {
+    자연: 'nature',
+    주택: 'residence',
+    지역인구: 'population',
+    안전: 'security',
+    생활편의교통: 'life',
+    교육: 'education',
+    복지문화: 'welfare',
+  };
+
+  const orderedData = dataOrder.map((label) => {
+    const category = categoryMap[label];
+    const foundScore = areaData?.areaBoardScoreResponse.find(
+      (score) => score.categoryName === category,
+    );
+    //버그
+    return foundScore ? foundScore.score : 70;
+  });
 
   const icons = [
     Nature,
@@ -59,19 +93,11 @@ const RadarChart = ({ setSelected, selected }: RadarChartProps) => {
   ];
 
   const chartData = {
-    labels: [
-      '자연',
-      '주택',
-      '지역인구',
-      '안전',
-      '생활편의교통',
-      '교육',
-      '복지문화',
-    ],
+    labels: dataOrder,
     datasets: [
       {
         label: '구별 지표',
-        data: [0, 10, 40, 60, 100, 50, 70],
+        data: orderedData,
         backgroundColor: 'rgba(157, 215, 215, 0.8)',
         borderColor: '#0B9B9B',
         borderWidth: 1,

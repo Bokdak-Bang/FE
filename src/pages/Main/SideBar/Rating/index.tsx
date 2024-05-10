@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Rating.module.scss';
 import Slider from 'components/Slider';
 import Button from 'components/common/Button';
+import { postDataArea } from 'apis/DataAreaApi';
+import useStore from 'context/useStore';
 import {
   Nature,
   House,
@@ -13,21 +15,25 @@ import {
   Traffic,
   Reset,
 } from 'assets';
+import { on } from 'events';
+import useAreaStore from 'context/useDetailStroe';
 
 interface RatingProps {
   onAnalyze: () => void;
 }
 
 const Rating = ({ onAnalyze }: RatingProps) => {
+  const { areaData } = useAreaStore();
+  const areaScores = useStore((state) => state.areaScores);
   const navigate = useNavigate();
   const [values, setValues] = useState({
-    natureScore: 2.5,
-    residenceScore: 2.5,
-    populationScore: 2.5,
-    securityScore: 2.5,
-    lifeScore: 2.5,
-    educationScore: 2.5,
-    welfareScore: 2.5,
+    natureScore: 3,
+    residenceScore: 3,
+    populationScore: 3,
+    securityScore: 3,
+    lifeScore: 3,
+    educationScore: 3,
+    welfareScore: 3,
   });
 
   // 각 슬라이더 값을 설정하는 함수
@@ -38,19 +44,47 @@ const Rating = ({ onAnalyze }: RatingProps) => {
   // 모든 슬라이더를 초기화하는 함수
   const handleReset = () => {
     setValues({
-      natureScore: 2.5,
-      residenceScore: 2.5,
-      populationScore: 2.5,
-      securityScore: 2.5,
-      lifeScore: 2.5,
-      educationScore: 2.5,
-      welfareScore: 2.5,
+      natureScore: 3,
+      residenceScore: 3,
+      populationScore: 3,
+      securityScore: 3,
+      lifeScore: 3,
+      educationScore: 3,
+      welfareScore: 3,
     });
   };
 
-  // '분석' 버튼의 onClick 이벤트 핸들러
   const handleAnalyzeClick = async () => {
-    onAnalyze();
+    try {
+      const {
+        natureScore,
+        residenceScore,
+        populationScore,
+        securityScore,
+        lifeScore,
+        educationScore,
+        welfareScore,
+      } = values;
+
+      const response = await postDataArea(
+        natureScore,
+        residenceScore,
+        populationScore,
+        securityScore,
+        lifeScore,
+        educationScore,
+        welfareScore,
+      );
+
+      if (response.code === '200' && response.isSuccess) {
+        // 데이터를 올바른 타입으로 변환하여 스토어에 저장
+        useStore.getState().setAreaScores(response.data.areaScoreResponseList);
+      }
+      console.log('Analysis results:', response);
+      onAnalyze(); // 분석 완료 후 onAnalyze 콜백 호출
+    } catch (error) {
+      console.error('Failed to post data:', error);
+    }
   };
 
   // 슬라이더 구성 요소 정보
