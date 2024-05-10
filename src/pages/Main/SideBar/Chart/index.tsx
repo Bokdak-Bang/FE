@@ -88,7 +88,7 @@ const Chart = ({
       </div>
       <div className={styles.mainTitle}>
         <div>
-          {userName} 님에게 추천하는 동네{' '}
+          {userName ? userName : 'Guest'} 님에게 추천하는 동네{' '}
           <span className={styles.highlight}>
             {rank}위 {area}
           </span>
