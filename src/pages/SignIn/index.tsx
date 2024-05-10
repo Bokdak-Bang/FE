@@ -34,6 +34,7 @@ const index = () => {
           sessionStorage.setItem('name', res.data.username);
           if (res.data.role === 'ROLE_USER') {
             setMember(res.data.role, res.data.username, email, password);
+            sessionStorage.setItem('isUser', 'true');
           } else if (res.data.role === 'ROLE_AGENT') {
             getAgentMyPage().then((res) => {
               if (res.isSuccess) {
@@ -47,6 +48,7 @@ const index = () => {
                   res.data.phoneNumber,
                   res.data.address,
                 );
+                sessionStorage.setItem('isUser', 'false');
               }
             });
           }
