@@ -5,13 +5,15 @@ import ChartDetail from 'components/ChartDetail';
 import Button from 'components/common/Button';
 import { LeftArrow, Share, Save } from 'assets';
 import { saveUserArea } from 'apis/\bDataBoardsApi';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface AgentConnetionProps {
   onClickAgent: () => void;
   area: string;
   rank: number;
   setAreaRank: (area: string, rank: number) => void;
+  setWidth: (width: string) => void;
+  setShowComponent: (component: string) => void;
 }
 
 const Chart = ({
@@ -19,8 +21,14 @@ const Chart = ({
   area,
   rank,
   setAreaRank,
+  setWidth,
+  setShowComponent,
 }: AgentConnetionProps) => {
   const navigator = useNavigate();
+  const handlBackBtn = () => {
+    setWidth('394px');
+    setShowComponent('Ranking');
+  };
   const regionIds: { [key: string]: number } = {
     강남구: 1,
     강동구: 2,
@@ -74,7 +82,7 @@ const Chart = ({
   return (
     <div>
       <div className={styles.header}>
-        <LeftArrow />
+        <LeftArrow onClick={handlBackBtn} />
         <div>내가 찾던 그 동네_동네분석</div>
       </div>
       <div className={styles.mainTitle}>
