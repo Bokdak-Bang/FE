@@ -4343,7 +4343,7 @@ const Map = ({ activeArea }: MapProps) => {
           fillOpacity: 0.5,
         });
 
-        window.window.kakao.maps.event.addListener(
+        window.kakao.maps.event.addListener(
           polygon,
           'mouseover',
           function (mouseEvent: { latLng: any }) {
