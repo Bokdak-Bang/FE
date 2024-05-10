@@ -72,7 +72,13 @@ const Header = () => {
       <div className={styles.container}>
         <div className={styles.left}>
           <GnbLogo
-            onClick={() => navigator('/')}
+            onClick={() => {
+              if (window.location.pathname === '/') {
+                window.location.reload();
+              } else {
+                navigator('/');
+              }
+            }}
             style={{ cursor: 'pointer' }}
           />
           <HeaderSearchBar onSave={handleSave} />
