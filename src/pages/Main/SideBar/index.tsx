@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './SideBar.module.scss';
-import { Routes, Route, Link, Outlet } from 'react-router-dom';
 import Rating from './Rating';
 import Ranking from './Ranking';
 import Chart from './Chart';

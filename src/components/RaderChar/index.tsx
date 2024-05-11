@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef, useEffect, useState } from 'react';
 import { Radar } from 'react-chartjs-2';
 import styles from './RaderChart.module.scss';

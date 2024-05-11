@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import styles from './Chart.module.scss';
 import RaderChart from 'components/RaderChar';
@@ -5,7 +6,7 @@ import ChartDetail from 'components/ChartDetail';
 import Button from 'components/common/Button';
 import { LeftArrow, Share, Save } from 'assets';
 import { saveUserArea } from 'apis/\bDataBoardsApi';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface AgentConnetionProps {
   onClickAgent: () => void;

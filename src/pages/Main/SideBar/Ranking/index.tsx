@@ -2,8 +2,6 @@ import React from 'react';
 import styles from './Ranking.module.scss';
 import { LeftArrow } from 'assets';
 import Rank from 'components/Rank';
-import { useNavigate } from 'react-router-dom';
-import ranks from 'models/rank.json';
 import useStore from 'context/useStore';
 
 interface RankingProps {
