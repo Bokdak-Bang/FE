@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Map from 'components/Map';
 import SideBar from './SideBar';
 import styles from './Main.module.scss';
