@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Bar } from 'react-chartjs-2';
 import styles from './BarChart.module.scss';
 import {

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styles from './Rating.module.scss';
 import Slider from 'components/Slider';
 import Button from 'components/common/Button';
@@ -15,17 +14,12 @@ import {
   Traffic,
   Reset,
 } from 'assets';
-import { on } from 'events';
-import useAreaStore from 'context/useDetailStroe';
 
 interface RatingProps {
   onAnalyze: () => void;
 }
 
 const Rating = ({ onAnalyze }: RatingProps) => {
-  const { areaData } = useAreaStore();
-  const areaScores = useStore((state) => state.areaScores);
-  const navigate = useNavigate();
   const [values, setValues] = useState({
     natureScore: 3,
     residenceScore: 3,
